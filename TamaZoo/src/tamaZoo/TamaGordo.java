@@ -9,29 +9,6 @@ public class TamaGordo extends Tamagotchi {
 	 * <h1>Costruttore vuoto</h1> viene istanziato un oggetto di tipo
 	 * {@linkplain TamaGordo}, con rispettivi valori:
 	 * <p>
-	 * {@linkplain Tamagotchi#nome}=<code>null</code>
-	 * </p>
-	 * <p>
-	 * {@linkplain Tamagotchi#affetto}={@linkplain Tamagotchi#MAX_VALORI_INTERNI}
-	 * </p>
-	 * <p>
-	 * {@linkplain Tamagotchi#sazieta}={@linkplain Tamagotchi#VAL_INIZ_RECOMMEND}
-	 * </p>
-	 */
-	public TamaGordo() {
-		super();
-		setAffetto(MAX_VALORI_INTERNI);
-	}
-	/**
-	 * <b>Costruttore con attributi</b>
-	 */
-	public TamaGordo(String nome, float sazieta) {
-		super(nome, MAX_VALORI_INTERNI, sazieta);
-	}
-	/**
-	 * <h1>Costruttore con solo il nome</h1>: viene istanziato un oggetto di tipo
-	 * {@linkplain TamaGordo}, con rispettivi valori:
-	 * <p>
 	 * {@linkplain Tamagotchi#nome}=<code>nome</code>
 	 * </p>
 	 * <p>
@@ -40,11 +17,18 @@ public class TamaGordo extends Tamagotchi {
 	 * <p>
 	 * {@linkplain Tamagotchi#sazieta}={@linkplain Tamagotchi#VAL_INIZ_RECOMMEND}
 	 * </p>
-	 * @param nome ,il nome da associare al {@linkplain TamaGordo}
 	 */
 	public TamaGordo(String nome) {
-		this(nome,VAL_INIZ_RECOMMEND);
+		super(nome);
+		setAffetto(MAX_VALORI_INTERNI);
 	}
+	/**
+	 * <b>Costruttore con attributi</b>
+	 */
+	public TamaGordo(String nome, float sazieta) {
+		super(nome, MAX_VALORI_INTERNI, sazieta);
+	}
+	
 	
 	/**
 	 * dando in input X biscotti essi<b> aumenteranno del
@@ -61,38 +45,27 @@ public class TamaGordo extends Tamagotchi {
 	 *      {@linkplain Tamagotchi#toString()}
 	 */
 	@Override
-	public String daiBiscotti(int numeroBiscotti) {
+	public String riceviBiscotti(int numeroBiscotti) {
 		numVolteDaiBiscotti++;
 		numVolteDaiCarezze = 0;// numVolteDaiCarezze--;
 		StringBuffer error = new StringBuffer();
-		/*
-		 * in caso non si usasse una libreria di input tipo quella InputDati che fa
-		 * controlli a principio, questo switch gestisce gli errori
-		 */
-		switch (UtilTamagotchi.inRange(numeroBiscotti, MAX_INPUT_STIMOLI, MIN_VALORI_INTERNI)) {
-		case UtilTamagotchi.ERR_TOO_HIGH:
-			return UtilTamagotchi.ERR_NUM_INSERT_TOO_HIGHT + MAX_INPUT_STIMOLI;
-		case UtilTamagotchi.ERR_TOO_LOW:
-			return UtilTamagotchi.ERR_NUM_INSERT_TOO_LOW + MIN_VALORI_INTERNI;
-		default:
-			break;
-		}
-		/* fine controlli dell'input */
 		/*
 		 *Questa parte diminuisce l'efficacia dell'aumento della sazieta'(e' una
 		 * parte di upgrade del programma, richiesta in Tamagotchi)
 		 */
 		if (numVolteDaiBiscotti > TOO_MUCH_BISCOTTI) {
-			numeroBiscotti = (int) Math.round((double) numeroBiscotti / RIDUZ_EFF_STIMULUS);// numeroBiscotti=numeroBiscotti/2;
-			error.append(String.format(TOO_MUCH_STIMULUS + System.lineSeparator(), BISCOTTI.toUpperCase()));
+		int numeroBiscottiConRiduzione=(int) Math.round((double) numeroBiscotti / RIDUZ_EFF_STIMULUS);
+			numeroBiscotti = numeroBiscottiConRiduzione;// numeroBiscotti=numeroBiscotti/2;
+			error.append(String.format(TOO_MUCH_STIMULUS + "%n", BISCOTTI.toUpperCase()));
 		}
 		//  check se la sazieta'  e' gia'  al massimo, non si puo' piu' dare
 		// biscotti
 		if (Math.min(getSazieta(), MAX_VALORI_INTERNI) == MAX_VALORI_INTERNI)
 			error.append(ERR_TAMAGOTCHI_SAZIO_AL_MAX);
 		try {
-			setSazieta((float) UtilTamagotchi.incrementoInPercentuale(getSazieta(), numeroBiscotti,
-					PERCENTUALE_AUMENTA_BISCOTTI));
+			float nuovaSazieta=(float) UtilTamagotchi.incrementoInPercentuale(getSazieta(), numeroBiscotti,
+					PERCENTUALE_AUMENTA_BISCOTTI);
+			setSazieta(nuovaSazieta);
 
 		} catch (IllegalArgumentException e) {
 			setSazieta(MAX_VALORI_INTERNI);
@@ -122,23 +95,10 @@ public class TamaGordo extends Tamagotchi {
 	 * 
 	 */
 	@Override
-	public String daiCarezze(int numeroCarezze) {
+	public String riceviCarezze(int numeroCarezze) {
 		numVolteDaiCarezze++;
 		numVolteDaiBiscotti = 0;
-		/*
-		 * In caso non si usasse una libreria di input tipo quella InputDati che fa
-		 * controlli a principio, questo switch gestisce gli errori
-		 */
 		StringBuffer error = new StringBuffer();
-		switch (UtilTamagotchi.inRange(numeroCarezze, MAX_INPUT_STIMOLI, MIN_VALORI_INTERNI)) {
-		case UtilTamagotchi.ERR_TOO_HIGH:
-			return UtilTamagotchi.ERR_NUM_INSERT_TOO_HIGHT + MAX_INPUT_STIMOLI;
-		case UtilTamagotchi.ERR_TOO_LOW:
-			return UtilTamagotchi.ERR_NUM_INSERT_TOO_LOW + MIN_VALORI_INTERNI;
-		default:
-			break;
-		}
-		/* fine controlli dell'input */
 		try {
 			// lanciata eccezione se si prova ad impostare la sazieta' a meno di
 			// MIN_VALORI_INTERNI
@@ -159,7 +119,7 @@ public class TamaGordo extends Tamagotchi {
 	 * @return boolean
 	 */
 	@Override
-	public boolean isTriste() {
+	public boolean sonoTriste() {
 		return (getAffetto() < SOGLIA_TRISTEZZA || getSazieta() < SOGLIA_TRISTEZZA);
 
 	}
@@ -182,7 +142,7 @@ public class TamaGordo extends Tamagotchi {
 	 * @return {@linkplain boolean}
 	 */
 	@Override
-	public boolean isMorto() {
+	public boolean sonoMorto() {
 
 		if (getSazieta() == MIN_VALORI_INTERNI || getAffetto() == MIN_VALORI_INTERNI)
 			return true;

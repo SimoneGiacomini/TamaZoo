@@ -17,7 +17,7 @@ public class MainClass {
 	public static void main(String[] args) {
 
 		System.out.println(SALUTO);
-		UtilTamagotchi.creaZoo(InputDati.leggiInteroConMinimo("Inserisci il numero di Tamagotchi da creare ", 1));
+		UtilTamagotchi.creaZoo(InputDati.leggiInteroPositivo("Inserisci il numero di Tamagotchi da creare "));
 		GiocaTamagotchi.usaTamagotchi();
 		System.out.println(ARRIVEDERCI);
 		// questo system.exit e' qui in modo da non far visualizzare piu' volte l'ultima

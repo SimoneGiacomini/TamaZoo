@@ -6,7 +6,7 @@ package Tamagotchi;
  * 
  * @author Simone Giacomini s.giacomini008@studenti.unibs.it
  */
-public abstract class Tamagotchi {
+public class Tamagotchi {
 	/**
 	 * attributo {@linkplain String} che rappresenta il {@linkplain #nome} del
 	 * {@linkplain Tamagotchi}
@@ -25,20 +25,7 @@ public abstract class Tamagotchi {
 
 	protected byte numVolteDaiCarezze = 0;
 	protected byte numVolteDaiBiscotti = 0;
-	/**
-	 * {@linkplain String} autoFormattata, recante il nome del progetto, che
-	 * inserisco in tutti i miei lavori
-	 * 
-	 * @author Simone Giacomini s.giacomini008@studenti.unibs.it
-	 * 
-	 */
-	public static final String BIG_TAMAGOTCHI = "######    ##    ##   ##   ##      ####    ###   ######    ####  ##  ##   ####   \n"
-			+ "# ## #   ####   ### ###  ####    ##  ##  ## ##  # ## #   ##  ## ##  ##    ##    \n"
-			+ "  ##    ##  ##  ####### ##  ##  ##      ##   ##   ##    ##      ##  ##    ##    \n"
-			+ "  ##    ##  ##  ####### ##  ##  ##      ##   ##   ##    ##      ######    ##    \n"
-			+ "  ##    ######  ## # ## ######  ##  ### ##   ##   ##    ##      ##  ##    ##    \n"
-			+ "  ##    ##  ##  ##   ## ##  ##   ##  ##  ## ##    ##     ##  ## ##  ##    ##    \n"
-			+ " ####   ##  ##  ##   ## ##  ##    #####   ###    ####     ####  ##  ##   ####    by Simone Giacomini";
+
 	/** Massimo numero di biscotti e di carezze */
 	public static final byte MAX_INPUT_STIMOLI = 20;
 
@@ -154,7 +141,7 @@ public abstract class Tamagotchi {
 	 * <h1>Costruttore vuoto</h1> viene istanziato un oggetto di tipo
 	 * {@linkplain Tamagotchi}, con rispettivi valori:
 	 * <p>
-	 * {@linkplain #nome}=<code>null</code>
+	 * {@linkplain #nome}=<code>nome</code>
 	 * </p>
 	 * <p>
 	 * {@linkplain #affetto}={@linkplain #VAL_INIZ_RECOMMEND}
@@ -163,9 +150,8 @@ public abstract class Tamagotchi {
 	 * {@linkplain #sazieta}={@linkplain #VAL_INIZ_RECOMMEND}
 	 * </p>
 	 */
-	public Tamagotchi() {
-		nome = null;
-		sazieta = affetto = VAL_INIZ_RECOMMEND;
+	public Tamagotchi(String nome) {
+		this(nome, VAL_INIZ_RECOMMEND, VAL_INIZ_RECOMMEND);
 	}
 
 	/** Ritorna il valore di {@linkplain #nome} */
@@ -270,21 +256,14 @@ public abstract class Tamagotchi {
 	 * @see {@linkplain UtilTamagotchi#checkErrInBuild},
 	 *      {@linkplain Tamagotchi#toString()}
 	 */
-	public String daiBiscotti(int numeroBiscotti) {
+	public String riceviBiscotti(int numeroBiscotti) {
 		numVolteDaiBiscotti++;
 		numVolteDaiCarezze = 0;// numVolteDaiCarezze--;
 		StringBuffer error = new StringBuffer();
-		switch (UtilTamagotchi.inRange(numeroBiscotti, MAX_INPUT_STIMOLI, MIN_VALORI_INTERNI)) {
-		case UtilTamagotchi.ERR_TOO_HIGH:
-			return UtilTamagotchi.ERR_NUM_INSERT_TOO_HIGHT + MAX_INPUT_STIMOLI;
-		case UtilTamagotchi.ERR_TOO_LOW:
-			return UtilTamagotchi.ERR_NUM_INSERT_TOO_LOW + MIN_VALORI_INTERNI;
-		default:
-			break;
-		}
 		if (numVolteDaiBiscotti > TOO_MUCH_BISCOTTI) {
-			numeroBiscotti = (int) Math.round((double) numeroBiscotti / RIDUZ_EFF_STIMULUS);// numeroBiscotti=numeroBiscotti/2;
-			error.append(String.format(TOO_MUCH_STIMULUS + System.lineSeparator(), BISCOTTI.toUpperCase()));
+			int numeroBiscottiConRiduzione = (int) Math.round((double) numeroBiscotti / RIDUZ_EFF_STIMULUS);
+			numeroBiscotti = numeroBiscottiConRiduzione;// numeroBiscotti=numeroBiscotti/2;
+			error.append(String.format(TOO_MUCH_STIMULUS + "%n", BISCOTTI.toUpperCase()));
 		}
 		// terzo check se la sazieta'  e' gia'  al massimo, non si puo' piu' dare
 		// biscotti
@@ -295,14 +274,15 @@ public abstract class Tamagotchi {
 		try {
 			// lanciata eccezione se si prova ad impostare l'affetto a meno di
 			// MIN_VALORI_INTERNI
-			setAffetto((getAffetto() - (float) (numeroBiscotti) / (float) (FATTORE_BISCOTTI)));
+			float nuovoAffetto = (getAffetto() - (float) (numeroBiscotti) / (float) (FATTORE_BISCOTTI));
+			setAffetto(nuovoAffetto);
 		} catch (IllegalArgumentException e) {
 			setAffetto(MIN_VALORI_INTERNI);
 		}
 		try {
-
-			setSazieta((float) UtilTamagotchi.incrementoInPercentuale(getSazieta(), numeroBiscotti,
-					PERCENTUALE_AUMENTA_BISCOTTI));
+			float nuovaSazieta = (float) UtilTamagotchi.incrementoInPercentuale(getSazieta(), numeroBiscotti,
+					PERCENTUALE_AUMENTA_BISCOTTI);
+			setSazieta(nuovaSazieta);
 
 		} catch (IllegalArgumentException e) {
 			setSazieta(MAX_VALORI_INTERNI);
@@ -335,29 +315,24 @@ public abstract class Tamagotchi {
 	 *      {@linkplain Tamagotchi#toString()}
 	 * 
 	 */
-	public String daiCarezze(int numeroCarezze) {
+	public String riceviCarezze(int numeroCarezze) {
 		numVolteDaiCarezze++;
 		numVolteDaiBiscotti = 0;
 		StringBuffer error = new StringBuffer();
-		switch (UtilTamagotchi.inRange(numeroCarezze, MAX_INPUT_STIMOLI, MIN_VALORI_INTERNI)) {
-		case UtilTamagotchi.ERR_TOO_HIGH:
-			return UtilTamagotchi.ERR_NUM_INSERT_TOO_HIGHT + MAX_INPUT_STIMOLI;
-		case UtilTamagotchi.ERR_TOO_LOW:
-			return UtilTamagotchi.ERR_NUM_INSERT_TOO_LOW + MIN_VALORI_INTERNI;
-		default:
-			break;
-		}
+
 		if (numVolteDaiCarezze > TOO_MUCH_CAREZZE) {
-			numeroCarezze = (int) Math.round((double) numeroCarezze / RIDUZ_EFF_STIMULUS);
-			error.append(String.format(TOO_MUCH_STIMULUS + System.lineSeparator(), CAREZZE.toUpperCase()));
+			int numeroCarezzeConRiduzione = (int) Math.round(numeroCarezze / RIDUZ_EFF_STIMULUS);
+			numeroCarezze = numeroCarezzeConRiduzione;
+			error.append(String.format(TOO_MUCH_STIMULUS + "%n", CAREZZE.toUpperCase()));
 		}
 		// terzo check se l'affetto e' gia'  al massimo, non si puo' piu' dare carezze
 		if (Math.min(getAffetto(), MAX_VALORI_INTERNI) == MAX_VALORI_INTERNI)
-			return ERR_TAMAGOTCHI_AFFETTO_MAX;
+			error.append(ERR_TAMAGOTCHI_AFFETTO_MAX);
 		try {
 			// lanciata eccezione se si prova ad impostare la sazieta' a meno di
 			// MIN_VALORI_INTERNI
-			setSazieta((getSazieta() - (float) (numeroCarezze) / (float) (FATTORE_CAREZZE)));
+			float nuovaSazieta = getSazieta() - (float) (numeroCarezze) / (float) (FATTORE_CAREZZE);
+			setSazieta((nuovaSazieta));
 		} catch (IllegalArgumentException e) {
 			setSazieta(MIN_VALORI_INTERNI);
 		}
@@ -383,7 +358,7 @@ public abstract class Tamagotchi {
 	 * 
 	 * @return boolean
 	 */
-	public boolean isTriste() {
+	public boolean sonoTriste() {
 		if (getAffetto() < SOGLIA_TRISTEZZA || getSazieta() < SOGLIA_TRISTEZZA || getSazieta() > SOGLIA_SAZIETA)
 			return true;
 		return false;
@@ -406,7 +381,7 @@ public abstract class Tamagotchi {
 	 * 
 	 * @return {@linkplain boolean}
 	 */
-	public boolean isMorto() {
+	public boolean sonoMorto() {
 
 		if (UtilTamagotchi.inRange(sazieta, MAX_VALORI_INTERNI - 1, MIN_VALORI_INTERNI + 1) != 0
 				|| getAffetto() == MIN_VALORI_INTERNI)
@@ -421,13 +396,13 @@ public abstract class Tamagotchi {
 	 */
 	public String umore() {
 
-		if (isMorto())
+		if (sonoMorto())
 			return getNome() + " \u00e8 morto " + DIE;
 
 		if (isFelice())
 			return getNome() + " \u00e8 felice " + HAPPY;
 
-		if (isTriste())
+		if (sonoTriste())
 			return getNome() + " \u00e8 triste " + SAD;
 
 		return getNome() + " sta bene " + NORMAL;

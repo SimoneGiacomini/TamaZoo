@@ -9,7 +9,7 @@ public abstract class TamaZoo {
 
 	public static final String SEPARATORE = "\n***********************\n";
 
-	public static final byte QUANTITA_SPECIE = 2;
+	public static final byte QUANTITA_SPECIE = 3;
 
 	private static ArrayList<Tamagotchi> zoo=new ArrayList<Tamagotchi>();
 
@@ -20,24 +20,26 @@ public abstract class TamaZoo {
 
 	public static String daiBiscotti(int biscotti) {
 		StringBuilder fine = new StringBuilder();
-		for (Tamagotchi tamagotchi : zoo) {
+		for (int i=0;i<zoo.size();i++) {
 			fine.append(SEPARATORE);
-			fine.append(tamagotchi.daiBiscotti(biscotti));
+			fine.append(zoo.get(i).riceviBiscotti(biscotti));
 			fine.append(SEPARATORE);
-			if (tamagotchi.isMorto())
-				zoo.remove(tamagotchi);
+			if (zoo.get(i).sonoMorto()) {
+				zoo.remove(zoo.get(i));
+				i--;}
 		}
 		return fine.toString();
 	}
 
 	public static String daiCarezze(int carezze) {
 		StringBuilder fine = new StringBuilder();
-		for (Tamagotchi tamagotchi : zoo) {
+		for (int i=0;i<zoo.size();i++) {
 			fine.append(SEPARATORE);
-			fine.append(tamagotchi.daiCarezze(carezze));
+			fine.append(zoo.get(i).riceviCarezze(carezze));
 			fine.append(SEPARATORE);
-			if (tamagotchi.isMorto())
-				zoo.remove(tamagotchi);
+			if (zoo.get(i).sonoMorto()) {
+				zoo.remove(zoo.get(i));
+				i--;}
 		}
 		return fine.toString();
 	}
@@ -78,6 +80,14 @@ public abstract class TamaZoo {
 	public static boolean tamaNameIsUsed(Tamagotchi tam) {
 		for (Tamagotchi tamagotchi : zoo) {
 			if(tamagotchi.equals(tam))
+				return true;
+		}
+		return false;
+	}
+	
+	public static boolean tamaNameIsUsed(String nomeTam) {
+		for (Tamagotchi tamagotchi : zoo) {
+			if(tamagotchi.getNome().equalsIgnoreCase(nomeTam))
 				return true;
 		}
 		return false;

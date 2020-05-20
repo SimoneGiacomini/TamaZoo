@@ -87,12 +87,18 @@ public class UtilTamagotchi {
 	 */
 	public static TamaTriste creaTamaTriste() {
 
-		TamaTriste tam = new TamaTriste(InputDati.leggiStringaNonVuota(NEW_NOME_TAMAGOTCHI),
-				InputDati.leggiFloat(NEW_AFFETTO_TAMAGOTCHI, Tamagotchi.MAX_INPUT_STIMOLI,
-						Tamagotchi.MAX_VALORI_INTERNI),
-				InputDati.leggiFloat(NEW_SAZIETA_TAMAGOTCHI, Tamagotchi.MAX_INPUT_STIMOLI,
-						Tamagotchi.MAX_VALORI_INTERNI));
-		return (TamaTriste) tam;
+		float affetto = InputDati.leggiFloat(NEW_AFFETTO_TAMAGOTCHI, Tamagotchi.MAX_INPUT_STIMOLI,
+				Tamagotchi.MAX_VALORI_INTERNI);
+		float sazieta = InputDati.leggiFloat(NEW_SAZIETA_TAMAGOTCHI, Tamagotchi.MAX_INPUT_STIMOLI,
+				Tamagotchi.MAX_VALORI_INTERNI);
+		String nome = InputDati.leggiStringaNonVuota(NEW_NOME_TAMAGOTCHI);
+
+		return new TamaTriste(nome, affetto, sazieta);
+	}
+
+	public static Tamagotchi creaTamagotchiReccomed() {
+		String nome = InputDati.leggiStringaNonVuota(NEW_NOME_TAMAGOTCHI);
+		return new Tamagotchi(nome);
 	}
 
 	/**
@@ -117,34 +123,31 @@ public class UtilTamagotchi {
 	 */
 	public static void creaZoo(int nTamagotchi) {
 		for (int i = 0; i < nTamagotchi; i++) {
+			String nomeTam = null;
+			do {
+				nomeTam = InputDati.leggiStringaNonVuota(NEW_NOME_TAMAGOTCHI);
+				if (TamaZoo.tamaNameIsUsed(nomeTam))
+					System.out.println("Nome gia' in uso");
+				else {
+					System.out.println("Tamagotchi n " + (i + 1) + " inserito con successo");
+					nomeTam=nomeTam.toUpperCase();
+					break;
+				}
+			} while (true);
 			switch (EstrazioniCasuali.estraiIntero(1, TamaZoo.QUANTITA_SPECIE)) {
+
 			case 1: {
-				do {
-					try {
-						Tamagotchi t = UtilTamagotchi.creaTamaTristeReccomed();
-						TamaZoo.aggiungiTamagotchi(t);
-						break;
-					} catch (IllegalArgumentException e) {
-						System.out.println(e.getMessage().toUpperCase());
-						System.out.println(RIPROVA);
-					}
-				} while (true);
+				TamaZoo.aggiungiTamagotchi(new Tamagotchi(nomeTam));
 				break;
 			}
 			case 2: {
-				do {
-					Tamagotchi t = UtilTamagotchi.creaTamaGordoReccomed();
-					try {
-						TamaZoo.aggiungiTamagotchi(t);
-						break;
-					} catch (IllegalArgumentException e) {
-						System.out.println(e.getMessage().toUpperCase());
-						System.out.println(RIPROVA);
-					}
-
-				} while (true);
+				TamaZoo.aggiungiTamagotchi(new TamaTriste(nomeTam));
 				break;
+
 			}
+			case 3:
+				TamaZoo.aggiungiTamagotchi(new TamaGordo(nomeTam));
+				break;
 			}
 		}
 
@@ -240,7 +243,7 @@ public class UtilTamagotchi {
 	}
 
 	/**
-	 * incrementa di "numeroVolte" il valore "numeroVolte" per la percentuale
+	 * incrementa di "numeroVolte" il valore "numeroIniziale" per la percentuale
 	 * "percentuale"
 	 * 
 	 * @param
