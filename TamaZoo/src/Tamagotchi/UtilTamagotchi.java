@@ -1,5 +1,16 @@
 package Tamagotchi;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
+import tamaZoo.TamaGordo;
+import tamaZoo.TamaTriste;
+import tamaZoo.TamaZoo;
 import util.mylib.*;
 
 /**
@@ -8,6 +19,8 @@ import util.mylib.*;
  * @author Simone Giacomini s.giacomini008@studenti.unibs.it
  */
 public class UtilTamagotchi {
+	private static final String RIPROVA = "Riprova";
+
 	public static final byte ERR_TOO_LOW = -1;
 
 	public static final byte ERR_TOO_HIGH = +1;
@@ -15,60 +28,71 @@ public class UtilTamagotchi {
 	public static final byte OK = 0;
 
 	// ERRORI
-	static final String ERR_NUM_INSERT_TOO_HIGHT = "ATTENZIONE, IL NUMERO INSERITO \u00e8 TROPPO ALTO, MASSIMO ";
+	public static final String ERR_NUM_INSERT_TOO_HIGHT = "ATTENZIONE, IL NUMERO INSERITO \u00e8 TROPPO ALTO, MASSIMO ";
 
-	static final String ERR_NUM_INSERT_TOO_LOW = "ATTENZIONE, IL NUMERO INSERITO \u00e8 TROPPO BASSO, MINIMO ";
+	public static final String ERR_NUM_INSERT_TOO_LOW = "ATTENZIONE, IL NUMERO INSERITO \u00e8 TROPPO BASSO, MINIMO ";
 
 	/**
 	 * Costante {@linkplain String} utilizzata per l'acquisizione/modifica del nome
 	 * del {@linkplain Tamagotchi}
 	 */
 	private static final String NEW_NOME_TAMAGOTCHI = System.lineSeparator() + "Inserisci il nome del tuo "
-			+ Tamagotchi.class.getSimpleName() + " ";
+			+ "Tamagotchi ";
 
 	/**
 	 * Costante {@linkplain String} utilizzata per l'acquisizione/modifica della
 	 * Sazieta del {@linkplain Tamagotchi}
 	 */
 	private static final String NEW_SAZIETA_TAMAGOTCHI = System.lineSeparator() + "Inserisci la " + Tamagotchi.SAZIETA
-			+ " del tuo " + Tamagotchi.class.getSimpleName() + " ";
+			+ " del tuo Tamagotchi ";
 	/**
 	 * Costante {@linkplain String} utilizzata per l'acquisizione/modifica della
 	 * affetto del {@linkplain Tamagotchi}
 	 */
 	private static final String NEW_AFFETTO_TAMAGOTCHI = System.lineSeparator() + "Inserisci l'" + Tamagotchi.AFFETTO
-			+ " del tuo " + Tamagotchi.class.getSimpleName() + " ";
+			+ " del tuo Tamagotchi ";
 
 	/**
-	 * Metodo che permette di creare un {@link Tamagotchi}
+	 * Metodo che permette di creare un {@link TamaTriste}
 	 * 
 	 * 
-	 * @return un oggetto {@linkplain Tamagotchi} con valori di <b>affetto</b> e di
+	 * @return un oggetto {@linkplain TamaTriste} con valori di <b>affetto</b> e di
 	 *         <b>sazieta</b> a {@linkplain Tamagotchi#VAL_INIZ_RECOMMEND}
-	 * @since 2020/4/14
+	 * @since 2020/5/16
 	 */
-	public static Tamagotchi creaTamagotchiReccomed() {
-		Tamagotchi t = new Tamagotchi();
-		modificaNome(t);
-		return t;
+	public static TamaTriste creaTamaTristeReccomed() {
+		return new TamaTriste(InputDati.leggiStringaNonVuota(NEW_NOME_TAMAGOTCHI));
 	}
 
 	/**
-	 * Metodo che permette di creare un {@link Tamagotchi}
+	 * Metodo che permette di creare un {@link TamaGordo}
+	 * 
+	 * 
+	 * @return un oggetto {@linkplain TamaGordo} con il valore di <b>sazieta'</b> a
+	 *         {@linkplain Tamagotchi#VAL_INIZ_RECOMMEND}, mentre il valore di
+	 *         <b>affetto</b> a {@linkplain Tamagotchi#MAX_VALORI_INTERNI}
+	 * @since 2020/5/16
+	 */
+	public static TamaGordo creaTamaGordoReccomed() {
+		return new TamaGordo(InputDati.leggiStringaNonVuota(NEW_NOME_TAMAGOTCHI));
+	}
+
+	/**
+	 * Metodo che permette di creare un {@link TamaTriste}
 	 * 
 	 * @param
-	 * @return un oggetto {@linkplain Tamagotchi} con valori di <b>affetto</b> e di
+	 * @return un oggetto {@linkplain TamaTriste} con valori di <b>affetto</b> e di
 	 *         <b>sazieta</b> inseriti dall'utente
-	 * @since 2020/4/14
+	 * @since 2020/5/16
 	 */
-	public static Tamagotchi creaTamagotchi() {
+	public static TamaTriste creaTamaTriste() {
 
-		Tamagotchi tam = new Tamagotchi(InputDati.leggiStringaNonVuota(NEW_NOME_TAMAGOTCHI),
+		TamaTriste tam = new TamaTriste(InputDati.leggiStringaNonVuota(NEW_NOME_TAMAGOTCHI),
 				InputDati.leggiFloat(NEW_AFFETTO_TAMAGOTCHI, Tamagotchi.MAX_INPUT_STIMOLI,
 						Tamagotchi.MAX_VALORI_INTERNI),
 				InputDati.leggiFloat(NEW_SAZIETA_TAMAGOTCHI, Tamagotchi.MAX_INPUT_STIMOLI,
 						Tamagotchi.MAX_VALORI_INTERNI));
-		return tam;
+		return (TamaTriste) tam;
 	}
 
 	/**
@@ -79,6 +103,51 @@ public class UtilTamagotchi {
 	 */
 	public static void modificaNome(Tamagotchi tam) {
 		tam.setNome(InputDati.leggiStringaNonVuota(NEW_NOME_TAMAGOTCHI));
+	}
+
+	/**
+	 * Metodo che permette di creare un {@linkplain Set} di {@link Tamagotchi}
+	 * 
+	 * @param nTamagotchi
+	 *            , sono la quantita' di {@linkplain Tamagotchi} da creare
+	 * @return un @{@linkplain Set} di {@linkplain TamaTriste} o
+	 *         {@linkplain TamaGordo}, con valori di <b>affetto</b> e di
+	 *         <b>sazieta</b> predifiniti
+	 * @since 2020/5/16
+	 */
+	public static void creaZoo(int nTamagotchi) {
+		for (int i = 0; i < nTamagotchi; i++) {
+			switch (EstrazioniCasuali.estraiIntero(1, TamaZoo.QUANTITA_SPECIE)) {
+			case 1: {
+				do {
+					try {
+						Tamagotchi t = UtilTamagotchi.creaTamaTristeReccomed();
+						TamaZoo.aggiungiTamagotchi(t);
+						break;
+					} catch (IllegalArgumentException e) {
+						System.out.println(e.getMessage().toUpperCase());
+						System.out.println(RIPROVA);
+					}
+				} while (true);
+				break;
+			}
+			case 2: {
+				do {
+					Tamagotchi t = UtilTamagotchi.creaTamaGordoReccomed();
+					try {
+						TamaZoo.aggiungiTamagotchi(t);
+						break;
+					} catch (IllegalArgumentException e) {
+						System.out.println(e.getMessage().toUpperCase());
+						System.out.println(RIPROVA);
+					}
+
+				} while (true);
+				break;
+			}
+			}
+		}
+
 	}
 
 	/**
@@ -144,7 +213,6 @@ public class UtilTamagotchi {
 	 *             se il numero passato e' maggiore del massimo
 	 * @throws IllegalArgumentException
 	 *             se il numero passato e' minore del minimo
-	 * 
 	 */
 	public static void checkErrInBuild(float valore, int massimo, int minimo) {
 		switch (inRange(valore, massimo, minimo)) {

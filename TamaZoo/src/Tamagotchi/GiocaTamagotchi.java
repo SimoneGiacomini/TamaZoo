@@ -1,5 +1,6 @@
 package Tamagotchi;
 
+import tamaZoo.TamaZoo;
 import util.mylib.*;
 /**
  * Classe per far giocare un {@linkplain Tamagotchi}
@@ -9,7 +10,7 @@ import util.mylib.*;
 public class GiocaTamagotchi {
 	public static final byte MIN_STIMOLI = Tamagotchi.MIN_VALORI_INTERNI + 1;
 	/** Voci del menu' */
-	private static final String[] voci = { "Dai biscotti", "Dai carezze", "Statistiche", "ECO" };
+	private static final String[] voci = { "Dai biscotti", "Dai carezze", "Statistiche",};
 	/** <b>Menu'</b> */
 	private final static MyMenu m = new MyMenu("     Cosa Vuoi fare ?     ", voci);
 
@@ -17,20 +18,19 @@ public class GiocaTamagotchi {
 	public final static String PRESENTAZIONE = "Ciao, io sono ";
 
 	/**
-	 * metodo che permette di usare il tamagotchi
+	 * metodo che permette di usare i tamagotchi
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	public static void usaTamagotchi(Tamagotchi tam) {
+	public static void usaTamagotchi() {
 		byte valoreIn;
 		byte scelta;
 		do {
-
-			if (GiocaTamagotchi.endGame(tam))
-				{System.out.println(String.format("%s %s", tam.eco("Addio, sono morto"),Tamagotchi.DIE));
-				if (!GiocaTamagotchi.rePlay())
-					break;}
+			if (GiocaTamagotchi.endGame())
+			{System.out.println(String.format("%s %s", ("Addio, siamo tutti morti, lo zoo e' stato chiuso"),Tamagotchi.DIE));
+			if (!GiocaTamagotchi.rePlay())
+				break;}
 
 			scelta = (byte) m.scegli();
 			switch (scelta) {
@@ -39,7 +39,7 @@ public class GiocaTamagotchi {
 				valoreIn = (byte) EstrazioniCasuali.estraiIntero(MIN_STIMOLI, InputDati.leggiIntero(
 						"Inserisci la quantita' di biscotti da dare ", MIN_STIMOLI, Tamagotchi.MAX_INPUT_STIMOLI));
 				System.out.println("Biscotti estratti: " + valoreIn);
-				System.out.println(tam.daiBiscotti(valoreIn));
+				System.out.println(TamaZoo.daiBiscotti(valoreIn));
 				break;
 
 			case 2:
@@ -47,16 +47,12 @@ public class GiocaTamagotchi {
 				valoreIn = (byte) EstrazioniCasuali.estraiIntero(MIN_STIMOLI, InputDati.leggiIntero(
 						"Inserisci la quantita' di carezze da dare ", MIN_STIMOLI, Tamagotchi.MAX_INPUT_STIMOLI));
 				System.out.println("Carezze estratte: " + valoreIn);
-				System.out.println(tam.daiCarezze(valoreIn));
+				System.out.println(TamaZoo.daiCarezze(valoreIn));
 
 				break;
 
 			case 3:
-				System.out.println(tam.toString());
-				break;
-
-			case 4:
-				System.out.println(tam.eco(InputDati.leggiStringaNonVuota("Cosa devo dire \u003f ")));
+				System.out.println(TamaZoo.toStringCollections());
 				break;
 
 			default:
@@ -68,8 +64,8 @@ public class GiocaTamagotchi {
 
 	/** Scopre se il gioco attuale del tamagotchi e' finito */
 
-	public static boolean endGame(Tamagotchi tam) {
-		if (tam.isMorto())
+	public static boolean endGame() {
+		if (TamaZoo.tuttiMorti())
 			return true;
 		return false;
 
@@ -84,7 +80,8 @@ public class GiocaTamagotchi {
 	}
 
 	/**
-	 * presentazione del Tamagotchi @author francesca
+	 * presentazione del Tamagotchi
+	 *  @author francesca
 	 */
 
 	public static void  miPresento(Tamagotchi tam) {

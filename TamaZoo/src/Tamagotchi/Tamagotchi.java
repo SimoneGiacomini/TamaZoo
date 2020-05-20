@@ -3,11 +3,10 @@ package Tamagotchi;
 /**
  * Classe che rappresenta un <a href="https://it.wikipedia.org/wiki/Tamagotchi">
  * Tamagotchi </a>
- * IN CASO <b>MANCASSE QUALCOSA</b> guarda nei file archiviati
  * 
  * @author Simone Giacomini s.giacomini008@studenti.unibs.it
  */
-public class Tamagotchi {
+public abstract class Tamagotchi {
 	/**
 	 * attributo {@linkplain String} che rappresenta il {@linkplain #nome} del
 	 * {@linkplain Tamagotchi}
@@ -24,8 +23,8 @@ public class Tamagotchi {
 	 */
 	private float sazieta;
 
-	private byte numVolteDaiCarezze = 0;
-	private byte numVolteDaiBiscotti = 0;
+	protected byte numVolteDaiCarezze = 0;
+	protected byte numVolteDaiBiscotti = 0;
 	/**
 	 * {@linkplain String} autoFormattata, recante il nome del progetto, che
 	 * inserisco in tutti i miei lavori
@@ -69,16 +68,16 @@ public class Tamagotchi {
 	/** faccina arrabbiata {@value} */
 	public static final String ANGRY = ">=(";
 	/** Soglia della TRISTEZZA */
-	private static final byte SOGLIA_TRISTEZZA = 30;
+	protected static final byte SOGLIA_TRISTEZZA = 30;
 
 	/** Soglia della Felicita' */
-	private static final byte SOGLIA_FELICITA = 80;
+	protected static final byte SOGLIA_FELICITA = 80;
 
 	/**
 	 * Soglia della {@linkplain #sazieta}, oltre alla quale, il
 	 * {@linkplain Tamagotchi} muore perche' troppo sazio
 	 */
-	private static final byte SOGLIA_SAZIETA = 90;
+	protected static final byte SOGLIA_SAZIETA = 90;
 
 	/**
 	 * fattore utilizzato per <b>DIVIDERE</b> le <b>carezze </b> ricevute nel metodo
@@ -86,14 +85,14 @@ public class Tamagotchi {
 	 * 
 	 * @see #daiCarezze
 	 */
-	private static final byte FATTORE_CAREZZE = 2;
+	protected static final byte FATTORE_CAREZZE = 2;
 	/**
 	 * percentuale che aumenta la {@linkplain #sazieta} quando si danno
 	 * <b>biscotti</b>
 	 * 
 	 * @see #daiBiscotti
 	 */
-	private static final float PERCENTUALE_AUMENTA_BISCOTTI = 10;
+	protected static final float PERCENTUALE_AUMENTA_BISCOTTI = 10;
 
 	/**
 	 * fattore utilizzato per <b>DIVIDERE</b> i <b>biscotti</b> ricevuti nel metodo
@@ -101,32 +100,32 @@ public class Tamagotchi {
 	 * 
 	 * @see #daiBiscotti
 	 */
-	private static final byte FATTORE_BISCOTTI = 4;
+	protected static final byte FATTORE_BISCOTTI = 4;
 
 	/** {@linkplain String} di <b>biscotti</b> */
-	private static final String BISCOTTI = "biscotti";
+	protected static final String BISCOTTI = "biscotti";
 	/** {@linkplain String} di <b>carezze</b> */
-	private static final String CAREZZE = "carezze";
+	protected static final String CAREZZE = "carezze";
 	/**
 	 * Sono il numero di volte che al {@linkplain Tamagotchi} va bene ricevere
 	 * {@linkplain #CAREZZE}
 	 */
-	private static final int TOO_MUCH_CAREZZE = 5;
+	protected static final int TOO_MUCH_CAREZZE = 5;
 	/**
 	 * Quando si danno per troppe volte {@linkplain #CAREZZE} o
 	 * {@linkplain #BISCOTTI} il {@linkplain Tamagotchi} si stanca e non ha piu'
 	 * voglia
 	 */
-	private static final String TOO_MUCH_STIMULUS = "HAI DATO TROPPE VOLTE %s, ORA NON NE HA PIU'TANTA VOGLIA ";
+	protected static final String TOO_MUCH_STIMULUS = "HAI DATO TROPPE VOLTE %s, ORA NON NE HA PIU'TANTA VOGLIA ";
 	/**
 	 * quanto gli stimoli vengono ridotti, dopo che ne ha ricevuti troppi di seguito
 	 */
-	private static final double RIDUZ_EFF_STIMULUS = 2.00;
+	protected static final double RIDUZ_EFF_STIMULUS = 2.00;
 	/**
 	 * Sono il numero di volte che al {@linkplain Tamagotchi} va bene ricevere
 	 * {@linkplain #BISCOTTI}
 	 */
-	private static final int TOO_MUCH_BISCOTTI = 2;
+	protected static final int TOO_MUCH_BISCOTTI = 2;
 
 	/** {@linkplain String} di {@linkplain #affetto} */
 	public static final String AFFETTO = "affetto";
@@ -134,12 +133,12 @@ public class Tamagotchi {
 	public static final String SAZIETA = "saziet\u00e0";
 
 	private static final String ERR_STRINGA_VUOTA = "ATTENZIONE IL PARAMETRO NON PU\u00d2 ESSERE UNA STRINGA VUOTA";
-	private static final String ERR_TAMAGOTCHI_AFFETTO_MAX = "ATTENZIONE, IL TAMAGOTCHI ti adora al massimo <3. NON Puoi dare pi\u00f9 CAREZZE";
-	private static final String ERR_TAMAGOTCHI_SAZIO_AL_MAX = "ATTENZIONE, IL TAMAGOTCHI \u00e8 Sazio al massimo! NON Puoi dare pi\u00f9 BISCOTTI";
+	protected static final String ERR_TAMAGOTCHI_AFFETTO_MAX = "ATTENZIONE, IL TAMAGOTCHI ti adora al massimo <3. NON Puoi dare pi\u00f9 CAREZZE\n";
+	protected static final String ERR_TAMAGOTCHI_SAZIO_AL_MAX = "ATTENZIONE, IL TAMAGOTCHI \u00e8 Sazio al massimo! NON Puoi dare pi\u00f9 BISCOTTI\n";
 
 	// tutti gli AVVERTIMENTI che si possono avere
-	private static final String WARNING_LOW = "ATTENZIONE!! Il valore %s \u00e8 al minimo!!";
-	private static final String WARNING_HIGH = "ATTENZIONE!! Il valore %s \u00e8 al massimo!!";
+	protected static final String WARNING_LOW = "ATTENZIONE!! Il valore %s \u00e8 al minimo!!";
+	protected static final String WARNING_HIGH = "ATTENZIONE!! Il valore %s \u00e8 al massimo!!";
 
 	/**
 	 * <b>Costruttore con attributi</b>
@@ -178,7 +177,8 @@ public class Tamagotchi {
 	 * viene assegnato all'attributo {@linkplain #nome} la {@linkplain String}
 	 * passata in ingresso
 	 * 
-	 * @throws IllegalArgumentException se la stringa passata e' vuota o nulla
+	 * @throws IllegalArgumentException
+	 *             se la stringa passata e' vuota o nulla
 	 * @param nome
 	 */
 	public void setNome(String nome) {
@@ -290,7 +290,7 @@ public class Tamagotchi {
 		// biscotti
 		if (Math.min(getSazieta(), MAX_VALORI_INTERNI) == MAX_VALORI_INTERNI)
 
-			return ERR_TAMAGOTCHI_SAZIO_AL_MAX;
+			error.append(ERR_TAMAGOTCHI_SAZIO_AL_MAX);
 
 		try {
 			// lanciata eccezione se si prova ad impostare l'affetto a meno di
@@ -441,6 +441,15 @@ public class Tamagotchi {
 	 */
 	public String getStatistiche() {
 		return getSazietaFormattata() + getAffettoFormattato();
+
+	}
+
+	/**
+	 * @return true se i nome dei 2 {@linkplain Tamagotchi} sono uguali, false
+	 *         altrimenti
+	 */
+	public boolean equals(Tamagotchi tam) {
+		return getNome().equalsIgnoreCase(tam.getNome());
 
 	}
 
