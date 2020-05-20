@@ -12,7 +12,7 @@ public class GiocaTamagotchi {
 	/** Voci del menu' */
 	private static final String[] voci = { "Dai biscotti", "Dai carezze", "Statistiche",};
 	/** <b>Menu'</b> */
-	private final static MyMenu m = new MyMenu("     Cosa Vuoi fare ?     ", voci);
+	private final static MyMenu m = new MyMenu("Cosa Vuoi fare ?", voci);
 
 	/** è un saluto stile Machintosh 1984 @author francesca */
 	public final static String PRESENTAZIONE = "Ciao, io sono ";

@@ -1,6 +1,6 @@
 package Tamagotchi;
 
-import tamaZoo.TamaZoo;
+
 import util.mylib.*;
 
 /**
