@@ -8,9 +8,11 @@ package util.mylib;
  */
 
 public class MyMenu {
-	final private static String VOCE_USCITA = "0)\tEsci";
+	
+
+	protected final static String VOCE_USCITA = "0)\tEsci";
 	final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata > ";
-	final private static int LUNGHEZZA_RICHIESTA = RICHIESTA_INSERIMENTO.length();
+	private final static int LUNGHEZZA_RICHIESTA = RICHIESTA_INSERIMENTO.length();
 	private String titolo;
 	private String[] voci;
 
@@ -35,6 +37,14 @@ public class MyMenu {
 
 		System.out.println('\n' + VOCE_USCITA + '\n');
 
+	}
+
+	protected String getTitolo() {
+		return titolo;
+	}
+
+	protected String[] getVoci() {
+		return voci;
 	}
 
 }
