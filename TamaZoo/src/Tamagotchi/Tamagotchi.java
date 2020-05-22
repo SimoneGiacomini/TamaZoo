@@ -1,5 +1,7 @@
 package Tamagotchi;
 
+import tamaZoo.Specie;
+
 /**
  * Classe che rappresenta un <a href="https://it.wikipedia.org/wiki/Tamagotchi">
  * Tamagotchi </a>
@@ -7,6 +9,9 @@ package Tamagotchi;
  * @author Simone Giacomini s.giacomini008@studenti.unibs.it
  */
 public class Tamagotchi {
+	
+	Specie tipo = null ;
+
 	/**
 	 * attributo {@linkplain String} che rappresenta il {@linkplain #nome} del
 	 * {@linkplain Tamagotchi}
@@ -135,6 +140,7 @@ public class Tamagotchi {
 		setNome(nome);
 		setAffetto(affetto);
 		setSazieta(sazieta);
+		this.tipo = getTipo();
 	}
 
 	/**
@@ -236,7 +242,7 @@ public class Tamagotchi {
 	 */
 	public String toString() {
 		return String.format(
-				System.lineSeparator() + "%s " + System.lineSeparator() + "%s %s" + System.lineSeparator() + "%s %s",
+				System.lineSeparator() + "%s " + System.lineSeparator() + "%s %s" + System.lineSeparator() + "%s %s",getTipo(),
 				umore(), SAZIETA.toUpperCase(), getSazietaFormattata(), AFFETTO.toUpperCase(), getAffettoFormattato());
 	}
 
@@ -417,6 +423,10 @@ public class Tamagotchi {
 	public String getStatistiche() {
 		return getSazietaFormattata() + getAffettoFormattato();
 
+	}
+
+	public Specie getTipo() {
+		return Specie.Standar;
 	}
 
 	/**

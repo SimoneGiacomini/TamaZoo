@@ -4,6 +4,7 @@ import Tamagotchi.Tamagotchi;
 import Tamagotchi.UtilTamagotchi;
 
 public class TamaGordo extends Tamagotchi {
+	
 
 	/**
 	 * <h1>Costruttore vuoto</h1> viene istanziato un oggetto di tipo
@@ -21,13 +22,21 @@ public class TamaGordo extends Tamagotchi {
 	public TamaGordo(String nome) {
 		super(nome);
 		setAffetto(MAX_VALORI_INTERNI);
+		
 	}
 	/**
 	 * <b>Costruttore con attributi</b>
 	 */
 	public TamaGordo(String nome, float sazieta) {
 		super(nome, MAX_VALORI_INTERNI, sazieta);
+	    
+	    
 	}
+	@Override
+	public Specie getTipo() {
+		return Specie.Gordo;
+	}
+
 	
 	
 	/**
@@ -149,4 +158,5 @@ public class TamaGordo extends Tamagotchi {
 		return false;
 	}
 
+	
 }
