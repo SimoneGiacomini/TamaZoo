@@ -2,6 +2,7 @@ package Tamagotchi;
 
 import tamaZoo.TamaZoo;
 import util.mylib.*;
+
 /**
  * Classe per far giocare un {@linkplain Tamagotchi}
  * 
@@ -10,7 +11,7 @@ import util.mylib.*;
 public class GiocaTamagotchi {
 	public static final byte MIN_STIMOLI = Tamagotchi.MIN_VALORI_INTERNI + 1;
 	/** Voci del menu' */
-	private static final String[] voci = { "Dai biscotti", "Dai carezze", "Statistiche",};
+	private static final String[] voci = { "Dai biscotti", "Dai carezze", "Statistiche", };
 	/** <b>Menu'</b> */
 	private final static CharMenu m = new CharMenu("Cosa Vuoi fare ?", voci);
 
@@ -27,10 +28,12 @@ public class GiocaTamagotchi {
 		byte valoreIn;
 		byte scelta;
 		do {
-			if (GiocaTamagotchi.endGame())
-			{System.out.println(String.format("%s %s", ("Addio, siamo tutti morti, lo zoo e' stato chiuso"),Tamagotchi.DIE));
-			if (!GiocaTamagotchi.rePlay())
-				break;}
+			if (GiocaTamagotchi.endGame()) {
+				System.out.println(
+						String.format("%s %s", ("Addio, siamo tutti morti, lo zoo e' stato chiuso"), Tamagotchi.DIE));
+				if (!GiocaTamagotchi.rePlay())
+					break;
+			}
 
 			scelta = (byte) m.scegli();
 			switch (scelta) {
@@ -65,9 +68,8 @@ public class GiocaTamagotchi {
 	/** Scopre se il gioco attuale del tamagotchi e' finito */
 
 	public static boolean endGame() {
-		if (TamaZoo.tuttiMorti())
-			return true;
-		return false;
+		return (TamaZoo.tuttiMorti());
+		
 
 	}
 
@@ -81,10 +83,11 @@ public class GiocaTamagotchi {
 
 	/**
 	 * presentazione del Tamagotchi
-	 *  @author francesca
+	 * 
+	 * @author francesca
 	 */
 
-	public static void  miPresento(Tamagotchi tam) {
+	public static void miPresento(Tamagotchi tam) {
 		System.out.println(GiocaTamagotchi.PRESENTAZIONE + tam.getNome());
 	}
 

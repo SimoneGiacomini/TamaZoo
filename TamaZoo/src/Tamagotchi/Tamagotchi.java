@@ -1,6 +1,6 @@
 package Tamagotchi;
 
-import tamaZoo.Specie;
+
 
 /**
  * Classe che rappresenta un <a href="https://it.wikipedia.org/wiki/Tamagotchi">
@@ -10,7 +10,7 @@ import tamaZoo.Specie;
  */
 public class Tamagotchi {
 	
-	Specie tipo = null ;
+	
 
 	/**
 	 * attributo {@linkplain String} che rappresenta il {@linkplain #nome} del
@@ -140,7 +140,6 @@ public class Tamagotchi {
 		setNome(nome);
 		setAffetto(affetto);
 		setSazieta(sazieta);
-		this.tipo = getTipo();
 	}
 
 	/**
@@ -221,7 +220,7 @@ public class Tamagotchi {
 	 * ({@linkplain #sazieta}/{@linkplain #MAX_VALORI_INTERNI})
 	 */
 	public String getSazietaFormattata() {
-		return String.format("(%.2f/%d)%s", getSazieta(), MAX_VALORI_INTERNI, System.lineSeparator());
+		return String.format("(%.2f/%d)%n", getSazieta(), MAX_VALORI_INTERNI);
 	}
 
 	/**
@@ -229,7 +228,7 @@ public class Tamagotchi {
 	 * ({@linkplain #affetto}/{@linkplain #MAX_VALORI_INTERNI})
 	 */
 	public String getAffettoFormattato() {
-		return String.format("(%.2f/%d)%s", getAffetto(), MAX_VALORI_INTERNI, System.lineSeparator());
+		return String.format("(%.2f/%d)%n", getAffetto(), MAX_VALORI_INTERNI);
 	}
 
 	/**
@@ -242,7 +241,7 @@ public class Tamagotchi {
 	 */
 	public String toString() {
 		return String.format(
-				System.lineSeparator() + "%s " + System.lineSeparator() + "%s %s" + System.lineSeparator() + "%s %s",getTipo(),
+				 "%n%s %n%s %s%n%s %s",getTipo(),
 				umore(), SAZIETA.toUpperCase(), getSazietaFormattata(), AFFETTO.toUpperCase(), getAffettoFormattato());
 	}
 
@@ -425,8 +424,8 @@ public class Tamagotchi {
 
 	}
 
-	public Specie getTipo() {
-		return Specie.Standar;
+	public String getTipo() {
+		return this.getClass().getSimpleName();
 	}
 
 	/**

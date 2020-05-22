@@ -32,12 +32,7 @@ public class TamaGordo extends Tamagotchi {
 	    
 	    
 	}
-	@Override
-	public Specie getTipo() {
-		return Specie.Gordo;
-	}
-
-	
+		
 	
 	/**
 	 * dando in input X biscotti essi<b> aumenteranno del

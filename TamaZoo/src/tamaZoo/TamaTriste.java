@@ -71,9 +71,5 @@ public class TamaTriste extends Tamagotchi {
 	public boolean sonoMorto() {
 		return (UtilTamagotchi.inRange(getSazieta(), MAX_VALORI_INTERNI - 1, MIN_VALORI_INTERNI + 1) != 0);
 	}
-	@Override
-	public Specie getTipo() {
-		return Specie.Triste;
-	}
-
+	
 }
