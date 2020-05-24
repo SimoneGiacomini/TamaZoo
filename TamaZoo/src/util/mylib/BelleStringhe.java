@@ -8,7 +8,7 @@ public class BelleStringhe
  
  private final static String ACAPO = System.lineSeparator();
 
-
+public final static char GRADO='\u00b0';
 
  public static String incornicia (String s)
 	{ 

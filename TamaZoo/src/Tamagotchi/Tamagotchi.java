@@ -8,9 +8,7 @@ import tamaZoo.TamaZoo;
  * 
  * @author Simone Giacomini s.giacomini008@studenti.unibs.it
  */
-public class Tamagotchi extends TamaZoo  {
-	
-	
+public class Tamagotchi extends TamaZoo {
 
 	/**
 	 * attributo {@linkplain String} che rappresenta il {@linkplain #nome} del
@@ -159,11 +157,8 @@ public class Tamagotchi extends TamaZoo  {
 		this(nome, VAL_INIZ_RECOMMEND, VAL_INIZ_RECOMMEND);
 	}
 
-	public Tamagotchi() {
-		// TODO Auto-generated constructor stub
-	}
-
-	/** Ritorna il valore di {@linkplain #nome} */
+	
+	/** @return il valore di {@linkplain #nome} */
 	public String getNome() {
 		return nome;
 	}
@@ -183,7 +178,7 @@ public class Tamagotchi extends TamaZoo  {
 		this.nome = nome;
 	}
 
-	/** Ritorna il valore di {@linkplain #affetto} */
+	/** @return il valore di {@linkplain #affetto} */
 	public float getAffetto() {
 		return affetto;
 	}
@@ -201,7 +196,7 @@ public class Tamagotchi extends TamaZoo  {
 
 	}
 
-	/** Ritorna il valore di {@linkplain #sazieta} */
+	/** @return il valore di {@linkplain #sazieta} */
 	public float getSazieta() {
 		return sazieta;
 	}
@@ -220,7 +215,7 @@ public class Tamagotchi extends TamaZoo  {
 	}
 
 	/**
-	 * Ritorna una {@linkplain String} tipo
+	 * @return una {@linkplain String} tipo
 	 * ({@linkplain #sazieta}/{@linkplain #MAX_VALORI_INTERNI})
 	 */
 	public String getSazietaFormattata() {
@@ -228,7 +223,7 @@ public class Tamagotchi extends TamaZoo  {
 	}
 
 	/**
-	 * Ritorna una {@linkplain String} tipo
+	 * @return una {@linkplain String} tipo
 	 * ({@linkplain #affetto}/{@linkplain #MAX_VALORI_INTERNI})
 	 */
 	public String getAffettoFormattato() {
@@ -236,7 +231,7 @@ public class Tamagotchi extends TamaZoo  {
 	}
 
 	/**
-	 * Ritorna una {@linkplain String} con {@linkplain #nome},
+	 * @return una {@linkplain String} con {@linkplain #nome},
 	 * {@linkplain #umore()}, ed {@linkplain #sazieta} e {@linkplain #affetto}
 	 * formattate
 	 * 
@@ -244,9 +239,8 @@ public class Tamagotchi extends TamaZoo  {
 	 *      {@linkplain #getAffettoFormattato()}
 	 */
 	public String toString() {
-		return String.format(
-				 "%n%s %n%s %s%n%s %s",getTipo(),
-				umore(), SAZIETA.toUpperCase(), getSazietaFormattata(), AFFETTO.toUpperCase(), getAffettoFormattato());
+		return String.format("%n%s %n%s%s %s%n%s %s", getTipo(), getNome(), umore(), SAZIETA.toUpperCase(),
+				getSazietaFormattata(), AFFETTO.toUpperCase(), getAffettoFormattato());
 	}
 
 	/**
@@ -260,8 +254,7 @@ public class Tamagotchi extends TamaZoo  {
 	 * gli attributi
 	 * 
 	 * @param numeroBiscotti
-	 * @return {@linkplain String} con i parametri aggiornati e tutti i messaggi
-	 *         d'errore del caso
+	 * @return {@linkplain String} con tutti i messaggi d'errore del caso
 	 * @see {@linkplain UtilTamagotchi#checkErrInBuild},
 	 *      {@linkplain Tamagotchi#toString()}
 	 */
@@ -304,7 +297,7 @@ public class Tamagotchi extends TamaZoo  {
 				error.append('\t');
 			error.append(String.format(WARNING_HIGH, SAZIETA));
 		}
-		return error.toString() + toString();
+		return error.toString();
 
 	}
 
@@ -318,8 +311,7 @@ public class Tamagotchi extends TamaZoo  {
 	 * gli attributi
 	 * 
 	 * @param numeroCarezze
-	 * @return {@linkplain String} con i parametri aggiornati e tutti i messaggi
-	 *         d'errore del caso
+	 * @return {@linkplain String} con tutti i messaggi d'errore del caso
 	 * @see {@linkplain UtilTamagotchi#checkErrInBuild},
 	 *      {@linkplain Tamagotchi#toString()}
 	 * 
@@ -359,13 +351,12 @@ public class Tamagotchi extends TamaZoo  {
 				error.append('\t');
 			error.append(String.format(WARNING_HIGH, AFFETTO));
 		}
-		return error.toString() + toString();
+		return error.toString();
 	}
 
 	/**
-	 * metodo che dice se il {@linkplain Tamagotchi} e' triste
-	 * 
-	 * @return boolean
+	 * @return {@code true} se il {@linkplain Tamagotchi} e' <b>triste</b>,
+	 *         {@code false} altrimenti
 	 */
 	public boolean sonoTriste() {
 		if (getAffetto() < SOGLIA_TRISTEZZA || getSazieta() < SOGLIA_TRISTEZZA || getSazieta() > SOGLIA_SAZIETA)
@@ -374,10 +365,8 @@ public class Tamagotchi extends TamaZoo  {
 	}
 
 	/**
-	 * metodo che dice se il {@linkplain Tamagotchi} e' felice
-	 * 
-	 * @return boolean
-	 * 
+	 * @return {@code true} se il {@linkplain Tamagotchi} e' <b>felice</b>,
+	 *         {@code false} altrimenti
 	 */
 	public boolean isFelice() {
 		if (getAffetto() > SOGLIA_FELICITA && getSazieta() > SOGLIA_FELICITA)
@@ -386,9 +375,8 @@ public class Tamagotchi extends TamaZoo  {
 	}
 
 	/**
-	 * metodo che capisce se il {@linkplain Tamagotchi} e' morto
-	 * 
-	 * @return {@linkplain boolean}
+	 * @return {@code true} se il {@linkplain Tamagotchi} e' <b>morto</b>,
+	 *         {@code false} altrimenti
 	 */
 	public boolean sonoMorto() {
 
@@ -406,20 +394,20 @@ public class Tamagotchi extends TamaZoo  {
 	public String umore() {
 
 		if (sonoMorto())
-			return getNome() + " \u00e8 morto " + DIE;
+			return " \u00e8 morto " + DIE;
 
 		if (isFelice())
-			return getNome() + " \u00e8 felice " + HAPPY;
+			return " \u00e8 felice " + HAPPY;
 
 		if (sonoTriste())
-			return getNome() + " \u00e8 triste " + SAD;
+			return " \u00e8 triste " + SAD;
 
-		return getNome() + " sta bene " + NORMAL;
+		return " sta bene " + NORMAL;
 	}
 
 	/**
-	 * restituisce una {@linkplain String} con le statistiche del
-	 * {@linkplain Tamagotchi}
+	 * @return una {@linkplain String} con le statistiche del
+	 *         {@linkplain Tamagotchi}
 	 * 
 	 * @see {@link #getAffettoFormattato()} , {@link #getSazietaFormattata()}
 	 */
@@ -428,11 +416,18 @@ public class Tamagotchi extends TamaZoo  {
 
 	}
 
+	/**
+	 * <b>Metodo</b> che capisci di che istanza e' <tt>this</tt> tamagotchi
+	 * 
+	 * @return il tipo/specie del tamagotchi
+	 */
 	public String getTipo() {
 		return this.getClass().getSimpleName();
 	}
 
 	/**
+	 * @param tam
+	 *            , e' il {@linkplain Tamagotchi} su cui analalizzare il nome
 	 * @return true se i nome dei 2 {@linkplain Tamagotchi} sono uguali, false
 	 *         altrimenti
 	 */

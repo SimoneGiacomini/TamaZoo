@@ -20,17 +20,13 @@ public class MainClass {
 			"Vuoi comporre la tua squadra %s con valori consigliati (%c) oppure a mano (%c) \u003f ",
 			TamaZoo.class.getSimpleName(), InputDati.RISPOSTA_SI, InputDati.RISPOSTA_NO);
 	
-	public final static String SALUTO = "Ciao, questo programma ti permette di avere un  "
-			+ TamaZoo.class.getSimpleName() + " tutto tuo ;-)";
+	public final static String SALUTO = "Ciao, questo programma ti permette di avere uno Zoo di Tamagotchi tutto tuo ;-)";
 	
 	public static void main(String[] args) {
-        TamaZoo myZoo = new Tamagotchi();
 		System.out.println(SALUTO);
-		System.out.println(TamaTitolo.BIG_TAMAGOTCHI + System.lineSeparator());
-		if (InputDati.yesOrNo(CREAZIONE_ZOO_RECOMMENDED)) 
+		System.out.println(TamaZoo.BIG_TAMAZOO + System.lineSeparator());
+		//if (InputDati.yesOrNo(CREAZIONE_ZOO_RECOMMENDED)) 
 		UtilTamagotchi.creaZoo(InputDati.leggiInteroPositivo(POPOLAZIONE_ZOO));
-		else
-		UtilTamagotchi.popolaLoZoo(InputDati.leggiInteroPositivo(POPOLAZIONE_ZOO));
 		System.out.println(TamaZoo.toStringa());
 		if (InputDati.yesOrNo(PRESENTAZIONI_ZOO)) 
 	    System.out.println(TamaZoo.visualizzaMyZoo());
