@@ -16,8 +16,7 @@ public abstract class TamaZoo {
 
 	public static final String SEPARATORE = "\n***********************\n";
 
-	public static final String BIG_TAMAZOO = 
-			  "######                          #######   ###     ###\n"
+	public static final String BIG_TAMAZOO = "######                          #######   ###     ###\n"
 			+ "# ## #                          ##   ##  ## ##   ## ##\n"
 			+ "  ##     ####   ##  ##   ####   #   ##  ##   ## ##   ##\n"
 			+ "  ##        ##  #######     ##     ##   ##   ## ##   ##\n"
@@ -34,32 +33,29 @@ public abstract class TamaZoo {
 		TamaZoo.zoo.addAll(zoo);
 	}
 
-	public static String daiBiscotti(int biscotti) {
-		StringBuilder fine = new StringBuilder();
+	public static String[] daiBiscotti(int biscotti) {
+		String[] fine = new String[zoo.size()];
 		for (int i = 0; i < zoo.size(); i++) {
-			fine.append(SEPARATORE);
-			fine.append(zoo.get(i).riceviBiscotti(biscotti));
-			fine.append(SEPARATORE);
+
+			fine[i] = SEPARATORE + zoo.get(i).riceviBiscotti(biscotti) + SEPARATORE;
 			if (zoo.get(i).sonoMorto()) {
 				zoo.remove(zoo.get(i));
 				i--;
 			}
 		}
-		return fine.toString();
+		return fine;
 	}
 
-	public static String daiCarezze(int carezze) {
-		StringBuilder fine = new StringBuilder();
+	public static String[] daiCarezze(int carezze) {
+		String[] fine = new String[zoo.size()];
 		for (int i = 0; i < zoo.size(); i++) {
-			fine.append(SEPARATORE);
-			fine.append(zoo.get(i).riceviCarezze(carezze));
-			fine.append(SEPARATORE);
+			fine[i] = SEPARATORE + zoo.get(i).riceviCarezze(carezze) + SEPARATORE;
 			if (zoo.get(i).sonoMorto()) {
 				zoo.remove(zoo.get(i));
 				i--;
 			}
 		}
-		return fine.toString();
+		return fine;
 	}
 
 	public static String[] visualizzaZoo() {
@@ -76,68 +72,38 @@ public abstract class TamaZoo {
 	 * metodo elenca componenti dello zoo senza svelare direttamente i parametri
 	 * tamamgotchi
 	 * 
-	 * @return {@linkplain String}
+	 * @return {@linkplain String[]}
 	 * @author Frncesca, edited by Simone
 	 */
-	public static String visualizzaMyZoo() {
-		StringBuilder eccoLoZoo = new StringBuilder();
+	public static String[] visualizzaMyZoo() {
+		String[] eccoLoZoo = new String[zoo.size()];
 
-		eccoLoZoo.append("Lo Zoo e' composto da: \n");
 		for (int i = 0; i < zoo.size(); i++) {
 			Tamagotchi daVisu = zoo.get(i);
-			eccoLoZoo.append(String.format(" Il tamagotchi n%c %d", BelleStringhe.GRADO, i + 1));
-			eccoLoZoo.append(String.format(", che appartiene alla Specie %s", daVisu.getTipo()));
-			eccoLoZoo.append(String.format(", lo hai chiamato %s e%s", daVisu.getNome(), daVisu.umore()));
-
+			eccoLoZoo[i] = String.format(
+					" Il tamagotchi n%c %d, che appartiene alla Specie %s, lo hai chiamato %s, il quale%s",
+					BelleStringhe.GRADO, i + 1, daVisu.getTipo(), daVisu.getNome(), daVisu.umore());
 		}
-		return eccoLoZoo.toString();
+		return eccoLoZoo;
 	}
 
 	/**
 	 * <b>Metodo</b> che descrive lo {@link #zoo} e la quantita' di
 	 * {@linkplain Tamagotchi} presenti
+	 * 
 	 * @author Simone
 	 */
 	public static String toStringa() {
 		return String.format("Nello zoo ci sono %d Tamagotchi", zoo.size());
 	}
 
-	/**
-	 * <b>Metodo</b> che descrive lo {@link #zoo} e tutti i suoi abitanti
-	 * 
-	 * @return una {@linkplain String} che descrive l'intero zoo, con dei separatori
-	 *         da tra di loro({@link #SEPARATORE})
-	 * @author Simone
-	 */
-	public static String toStringCollections() {
+	/** @see #visualizzaMyZoo() */
+	public static String toStringMyZooNoStatistic() {
 		StringBuilder fine = new StringBuilder(toStringa());
-		String[] collection = visualizzaZoo();
-		fine.append("\nContiene:\n");
-		if (collection != null && collection.length > 0) {
-			for (int i = 0; i < collection.length; i++) {
-				fine.append(SEPARATORE);
-				fine.append(collection[i]);
-				fine.append(SEPARATORE);
-			}
-		} else
-			fine.append("-->vuoto");
-
-		return fine.toString();
-	}
-
-	/**
-	 * <b>Metodo</b> che descrive lo {@link #zoo} e tutti i suoi abitanti
-	 * 
-	 * @return una {@linkplain String} che descrive l'intero zoo
-	 * @author Francesca
-	 */
-	public static String toStringMyZoo() {
-		StringBuilder fine = new StringBuilder(toStringa());
-		String[] collection = visualizzaZoo();
+		String[] collection = visualizzaMyZoo();
 		if (collection != null && collection.length > 0) {
 			fine.append("\nContiene:\n");
 			for (int i = 0; i < collection.length; i++) {
-				fine.append(String.format("%d%c Tamagotchi", i + 1, BelleStringhe.GRADO));
 				fine.append(SEPARATORE);
 				fine.append(collection[i]);
 				fine.append(SEPARATORE);
@@ -149,10 +115,34 @@ public abstract class TamaZoo {
 	}
 
 	/**
-	 * @return {@code true}, se lo {@link #zoo} e' vuoto, {@code false} altrimenti
-	 @author Simone
+	 * <b>Metodo</b> che descrive lo {@link #zoo} e tutti i suoi abitanti
+	 * 
+	 * @return una {@linkplain String} che descrive l'intero zoo, con dei separatori
+	 *         da tra di loro ({@link #SEPARATORE})
+	 * @author Francesca
 	 */
-	public static boolean tuttiMorti() {
+	public static String toStringMyZoo() {
+		StringBuilder fine = new StringBuilder(toStringa());
+		String[] collection = visualizzaZoo();
+		if (collection != null && collection.length > 0) {
+			fine.append("\nContiene:\n");
+			for (int i = 0; i < collection.length; i++) {
+				fine.append(SEPARATORE);
+				fine.append(String.format("%d%c Tamagotchi", i + 1, BelleStringhe.GRADO));
+				fine.append(collection[i]);
+				fine.append(SEPARATORE);
+			}
+		} else
+			fine.append("Lo zoo e' vuoto");
+
+		return fine.toString();
+	}
+
+	/**
+	 * @return {@code true}, se lo {@link #zoo} e' vuoto, {@code false} altrimenti
+	 * @author Simone
+	 */
+	public static boolean zooVuoto() {
 		return zoo.isEmpty();
 	}
 

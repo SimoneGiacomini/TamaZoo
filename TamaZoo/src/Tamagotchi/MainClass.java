@@ -23,15 +23,14 @@ public class MainClass {
 	public final static String SALUTO = "Ciao, questo programma ti permette di avere uno Zoo di Tamagotchi tutto tuo ;-)";
 	
 	public static void main(String[] args) {
-		System.out.println(SALUTO);
 		System.out.println(TamaZoo.BIG_TAMAZOO + System.lineSeparator());
+		System.out.println(SALUTO);
 		//if (InputDati.yesOrNo(CREAZIONE_ZOO_RECOMMENDED)) 
 		UtilTamagotchi.creaZoo(InputDati.leggiInteroPositivo(POPOLAZIONE_ZOO));
 		System.out.println(TamaZoo.toStringa());
 		if (InputDati.yesOrNo(PRESENTAZIONI_ZOO)) 
-	    System.out.println(TamaZoo.visualizzaMyZoo());
-	    else
-	    System.out.println("gioca casualemente");
+	    System.out.println(TamaZoo.toStringMyZooNoStatistic());
+
 	    GiocaTamagotchi.usaTamagotchi();
 		System.out.println(ARRIVEDERCI);
 		

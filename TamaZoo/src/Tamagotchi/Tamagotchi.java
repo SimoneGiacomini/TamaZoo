@@ -239,7 +239,7 @@ public class Tamagotchi extends TamaZoo {
 	 *      {@linkplain #getAffettoFormattato()}
 	 */
 	public String toString() {
-		return String.format("%n%s %n%s%s %s%n%s %s", getTipo(), getNome(), umore(), SAZIETA.toUpperCase(),
+		return String.format("%n%s %n%s%s %s %s%n%s %s", getTipo(), getNome(), umore(), SAZIETA.toUpperCase(),
 				getSazietaFormattata(), AFFETTO.toUpperCase(), getAffettoFormattato());
 	}
 
@@ -247,7 +247,7 @@ public class Tamagotchi extends TamaZoo {
 	 * dando in input X biscotti essi<b> aumenteranno del
 	 * {@linkplain #PERCENTUALE_AUMENTA_BISCOTTI} l'attributo {@linkplain #sazieta}
 	 * per OGNI BISCOTTO DATO</b> e <b>diminuira' l'{@linkplain #affetto} con la
-	 * formula: {@code affetto=affetto-(numerobiscotti/4)}</b>. In piu' questo
+	 * formula: {@code affetto=affetto-(numerobiscotti/}{@value #FATTORE_BISCOTTI})</b>. In piu' questo
 	 * metodo <b>controlla tutte le possibili combinazioni possibili</b> per non
 	 * settare a un valore, stabilito da noi, troppo alto
 	 * ({@linkplain #MAX_VALORI_INTERNI}) o basso ({@linkplain #MIN_VALORI_INTERNI})

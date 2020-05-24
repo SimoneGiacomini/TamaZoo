@@ -37,6 +37,7 @@ public class GiocaTamagotchi {
 
 			scelta = (byte) m.scegli();
 			switch (scelta) {
+			case 1:
 			case 'A':
 				// prima si ottiene il numero e poi viene estratto
 				valoreIn = (byte) EstrazioniCasuali.estraiIntero(MIN_STIMOLI, InputDati.leggiIntero(
@@ -44,7 +45,7 @@ public class GiocaTamagotchi {
 				System.out.println("Biscotti estratti: " + valoreIn);
 				System.out.println(TamaZoo.daiBiscotti(valoreIn));
 				break;
-
+			case 2:
 			case 'B':
 				// prima si ottiene il numero e poi viene estratto
 				valoreIn = (byte) EstrazioniCasuali.estraiIntero(MIN_STIMOLI, InputDati.leggiIntero(
@@ -53,22 +54,22 @@ public class GiocaTamagotchi {
 				System.out.println(TamaZoo.daiCarezze(valoreIn));
 
 				break;
-
+			case 3:
 			case 'C':
-				System.out.println(TamaZoo.toStringCollections());
+				System.out.println(TamaZoo.toStringMyZoo());
 				break;
 
 			default:
 				break;
 			}
 
-		} while (scelta != '0');
+		} while (scelta != '0'||scelta!=0);
 	}
 
 	/** Scopre se il gioco attuale del tamagotchi e' finito */
 
 	public static boolean endGame() {
-		return (TamaZoo.tuttiMorti());
+		return (TamaZoo.zooVuoto());
 		
 
 	}
@@ -84,11 +85,15 @@ public class GiocaTamagotchi {
 	/**
 	 * presentazione del Tamagotchi
 	 * 
-	 * @author francesca
+	 * @author Francesca
 	 */
 
 	public static void miPresento(Tamagotchi tam) {
 		System.out.println(GiocaTamagotchi.PRESENTAZIONE + tam.getNome());
 	}
 
+	private static void mostraDaiBiscotti() {
+		
+	}
+	
 }
