@@ -53,6 +53,26 @@ public abstract class TamaZoo {
 		}
 		return fine;
 	}
+	/**
+	 * metodo elenca componenti dello zoo  senza svelare direttamente i parametri tamamgotchi
+	 * @return
+	 */
+	public static String visualizzaMyZoo() {
+		StringBuilder eccoLoZoo = new StringBuilder();
+		int posZoo=0;
+		eccoLoZoo.append("eccola: \n");
+		for  (int i = 0; i < zoo.size(); i++) {
+			
+			 posZoo= zoo.indexOf(zoo.get(i))+1;
+			 eccoLoZoo.append(String.format(" il tamagotchi n : %d",posZoo));
+			 eccoLoZoo.append(String.format(" lo hai chiamato: %s",zoo.get(i).getNome()));
+			 eccoLoZoo.append(String.format(" appartiene alla Specie %s",zoo.get(i).getClass().getSimpleName()));
+			 eccoLoZoo.append(String.format(" il suo stato attuale : %s\n",zoo.get(i).umore()));
+            }
+		
+	
+		 return eccoLoZoo.toString();
+	}
 
 	public static String toStringa() {
 		return String.format("Nello zoo ci sono %d Tamagotchi", zoo.size());
@@ -74,6 +94,21 @@ public abstract class TamaZoo {
 		return fine.toString();
 	}
 
+	public static String toStringMyZoo() {
+		StringBuilder fine = new StringBuilder(toStringa());
+		String[] collection = visualizzaZoo();
+		fine.append("\nContiene:\n");
+		if (collection != null && collection.length > 0) {
+			for (int i = 0; i < collection.length; i++) {
+				fine.append(String.format("%d Tamagotchi", zoo.size()));
+				fine.append(collection[i].toString());
+			
+			}
+		} else
+			fine.append("-->vuoto");
+
+		return fine.toString();
+	}
 	public static boolean tuttiMorti() {
 		return zoo.isEmpty();
 	}
@@ -98,4 +133,6 @@ public abstract class TamaZoo {
 			throw new IllegalArgumentException("Esiste gia' un Tamagotchi con lo stesso nome");
 		return zoo.add(tam);
 	}
+	
+	
 }

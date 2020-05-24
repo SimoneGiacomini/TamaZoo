@@ -1,6 +1,6 @@
 package Tamagotchi;
 
-
+import tamaZoo.TamaZoo;
 
 /**
  * Classe che rappresenta un <a href="https://it.wikipedia.org/wiki/Tamagotchi">
@@ -8,7 +8,7 @@ package Tamagotchi;
  * 
  * @author Simone Giacomini s.giacomini008@studenti.unibs.it
  */
-public class Tamagotchi {
+public class Tamagotchi extends TamaZoo  {
 	
 	
 
@@ -157,6 +157,10 @@ public class Tamagotchi {
 	 */
 	public Tamagotchi(String nome) {
 		this(nome, VAL_INIZ_RECOMMEND, VAL_INIZ_RECOMMEND);
+	}
+
+	public Tamagotchi() {
+		// TODO Auto-generated constructor stub
 	}
 
 	/** Ritorna il valore di {@linkplain #nome} */

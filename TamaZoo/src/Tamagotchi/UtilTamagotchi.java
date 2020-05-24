@@ -52,6 +52,8 @@ public class UtilTamagotchi {
 	private static final String NEW_AFFETTO_TAMAGOTCHI = System.lineSeparator() + "Inserisci l'" + Tamagotchi.AFFETTO
 			+ " del tuo Tamagotchi ";
 
+	private static Tamagotchi zoo;
+
 	/**
 	 * Metodo che permette di creare un {@link TamaTriste}
 	 * 
@@ -121,6 +123,19 @@ public class UtilTamagotchi {
 	 *         <b>sazieta</b> predifiniti
 	 * @since 2020/5/16
 	 */
+	
+	
+		
+	
+	
+	public String visualizzaMyZoo(TamaZoo ilmiozoo) {
+		return Tamagotchi.toStringa();
+	}
+	
+	
+	
+	
+	
 	public static void creaZoo(int nTamagotchi) {
 		for (int i = 0; i < nTamagotchi; i++) {
 			String nomeTam = null;
@@ -255,6 +270,66 @@ public class UtilTamagotchi {
 			numeroIniziale = (numeroIniziale + percentuale(percentuale, numeroIniziale));
 		}
 		return numeroIniziale;
+	}
+
+	public static void popolaLoZoo(int nPopolazione) {
+		for (int i = 0; i < nPopolazione; i++) {
+			String nomeTam = null;
+			do {
+				
+				popolaZoo();
+				
+				if (TamaZoo.tamaNameIsUsed(nomeTam))
+					System.out.println("Nome gia' in uso");
+				else {
+					System.out.println("Tamagotchi n " + (i + 1) + " inserito con successo");
+					nomeTam=nomeTam.toUpperCase();
+					break;
+				}
+			} while (true);
+			
+		}
+	}
+		
+
+	
+	public static void popolaZoo() {
+    System.out.println("componi la tua squadra come preferisci:");
+		  int scelta = 0;
+	   //TamaZoo zoo = new Tamagotchi();
+		 String messaggio = "1.inserisci tamagotchi\n" + 
+							"2.inserisci tama di specie TamaTriste\n" + 
+							"3.inserisci tama di specie TamaGordo \n" +
+							"0.esci\n";
+		do {
+			System.out.println();
+			scelta = InputDati.leggiInteroNonNegativo(messaggio);
+			switch ( scelta ) {
+				case 1:
+					TamaZoo.aggiungiTamagotchi(creaTamagotchiReccomed());
+					
+					break;
+				case 2:
+					TamaZoo.aggiungiTamagotchi(creaTamaTristeReccomed());
+					break;
+				case 3:
+					TamaZoo.aggiungiTamagotchi(creaTamaGordoReccomed());
+					break;
+			}
+		} while ( scelta != 0 );
+	 
+	 }
+	
+	
+	
+	public static Tamagotchi creaTamagotchi() {
+
+		Tamagotchi tam = new Tamagotchi(InputDati.leggiStringaNonVuota(NEW_NOME_TAMAGOTCHI),
+				InputDati.leggiFloat(NEW_AFFETTO_TAMAGOTCHI, Tamagotchi.MAX_INPUT_STIMOLI,
+						Tamagotchi.MAX_VALORI_INTERNI),
+				InputDati.leggiFloat(NEW_SAZIETA_TAMAGOTCHI, Tamagotchi.MAX_INPUT_STIMOLI,
+						Tamagotchi.MAX_VALORI_INTERNI));
+		return tam;
 	}
 
 }
