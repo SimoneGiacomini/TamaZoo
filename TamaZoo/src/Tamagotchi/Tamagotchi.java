@@ -239,7 +239,7 @@ public class Tamagotchi extends TamaZoo {
 	 *      {@linkplain #getAffettoFormattato()}
 	 */
 	public String toString() {
-		return String.format("%n%s %n%s%s %s %s%n%s %s", getTipo(), getNome(), umore(), SAZIETA.toUpperCase(),
+		return String.format("%n%s %n%s%s%n%s %s%n%s %s", getTipo(), getNome(), umore(), SAZIETA.toUpperCase(),
 				getSazietaFormattata(), AFFETTO.toUpperCase(), getAffettoFormattato());
 	}
 

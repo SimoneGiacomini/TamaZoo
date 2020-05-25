@@ -30,7 +30,6 @@ public class MainClass {
 		System.out.println(TamaZoo.toStringa());
 		if (InputDati.yesOrNo(PRESENTAZIONI_ZOO)) 
 	    System.out.println(TamaZoo.toStringMyZooNoStatistic());
-
 	    GiocaTamagotchi.usaTamagotchi();
 		System.out.println(ARRIVEDERCI);
 		

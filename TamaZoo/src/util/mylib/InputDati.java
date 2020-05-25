@@ -237,4 +237,10 @@ public class InputDati {
 			return false;
 	}
 
+	public static void premutoTasto(String daOutputtare) {
+		System.out.println(daOutputtare);
+		System.out.print("Per visualizzare il prossimo elemento, premi invio >");
+		lettore.next();
+		return;
+	}
 }

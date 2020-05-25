@@ -14,8 +14,6 @@ import util.mylib.BelleStringhe;
  */
 public abstract class TamaZoo {
 
-	public static final String SEPARATORE = "\n***********************\n";
-
 	public static final String BIG_TAMAZOO = "######                          #######   ###     ###\n"
 			+ "# ## #                          ##   ##  ## ##   ## ##\n"
 			+ "  ##     ####   ##  ##   ####   #   ##  ##   ## ##   ##\n"
@@ -36,8 +34,9 @@ public abstract class TamaZoo {
 	public static String[] daiBiscotti(int biscotti) {
 		String[] fine = new String[zoo.size()];
 		for (int i = 0; i < zoo.size(); i++) {
+			String daVisu = zoo.get(i).riceviBiscotti(biscotti) + zoo.get(i).toString();
 
-			fine[i] = SEPARATORE + zoo.get(i).riceviBiscotti(biscotti) + SEPARATORE;
+			fine[i] = BelleStringhe.stampaStringaCorniceCentrato(daVisu, BelleStringhe.GRADO);
 			if (zoo.get(i).sonoMorto()) {
 				zoo.remove(zoo.get(i));
 				i--;
@@ -49,7 +48,8 @@ public abstract class TamaZoo {
 	public static String[] daiCarezze(int carezze) {
 		String[] fine = new String[zoo.size()];
 		for (int i = 0; i < zoo.size(); i++) {
-			fine[i] = SEPARATORE + zoo.get(i).riceviCarezze(carezze) + SEPARATORE;
+			String daVisu = zoo.get(i).riceviCarezze(carezze) + zoo.get(i).toString();
+			fine[i] = (BelleStringhe.stampaStringaCorniceCentrato(daVisu, BelleStringhe.GRADO));
 			if (zoo.get(i).sonoMorto()) {
 				zoo.remove(zoo.get(i));
 				i--;
@@ -81,7 +81,7 @@ public abstract class TamaZoo {
 		for (int i = 0; i < zoo.size(); i++) {
 			Tamagotchi daVisu = zoo.get(i);
 			eccoLoZoo[i] = String.format(
-					" Il tamagotchi n%c %d, che appartiene alla Specie %s, lo hai chiamato %s, il quale%s",
+					"Il tamagotchi n%c %d, %nche appartiene alla Specie %s, %nlo hai chiamato %s, il quale%s%n",
 					BelleStringhe.GRADO, i + 1, daVisu.getTipo(), daVisu.getNome(), daVisu.umore());
 		}
 		return eccoLoZoo;
@@ -104,9 +104,8 @@ public abstract class TamaZoo {
 		if (collection != null && collection.length > 0) {
 			fine.append("\nContiene:\n");
 			for (int i = 0; i < collection.length; i++) {
-				fine.append(SEPARATORE);
-				fine.append(collection[i]);
-				fine.append(SEPARATORE);
+				String daVisu = collection[i];
+				fine.append(BelleStringhe.stampaStringaCorniceCentrato(daVisu, BelleStringhe.GRADO));
 			}
 		} else
 			fine.append("Lo zoo e' vuoto");
@@ -127,10 +126,9 @@ public abstract class TamaZoo {
 		if (collection != null && collection.length > 0) {
 			fine.append("\nContiene:\n");
 			for (int i = 0; i < collection.length; i++) {
-				fine.append(SEPARATORE);
-				fine.append(String.format("%d%c Tamagotchi", i + 1, BelleStringhe.GRADO));
-				fine.append(collection[i]);
-				fine.append(SEPARATORE);
+				String daVisu = (String.format("%d%c Tamagotchi", i + 1, BelleStringhe.GRADO)) + collection[i];
+				fine.append(BelleStringhe.stampaStringaCorniceCentrato(daVisu, BelleStringhe.GRADO));
+
 			}
 		} else
 			fine.append("Lo zoo e' vuoto");
