@@ -9,7 +9,7 @@ public class BelleStringhe {
 
 	private final static String SPAZIO = " ";
 
-	private final static String ACAPO = System.lineSeparator();
+	public final static String ACAPO = System.lineSeparator();
 
 	public final static char GRADO = '\u00b0';
 
@@ -86,7 +86,11 @@ public class BelleStringhe {
 
 	public static String stampaStringCentrato(String daStampare) {
 		ArrayList<Integer> aCapo = new ArrayList<>();
-		ArrayList<String> tutteLeStringhe = new ArrayList<>();
+		ArrayList<String> tutteLeStringhe = new ArrayList<>();{
+		Character allafine=daStampare.charAt(daStampare.length()-1);
+		if(allafine!='\n')
+			daStampare+=ACAPO;
+		}
 		int i = 0;
 		int j = 0;
 		while (i != -1) {
@@ -109,7 +113,7 @@ public class BelleStringhe {
 		}
 		StringBuilder fine = new StringBuilder();
 		for (String string : tutteLeStringhe) {
-			fine.append(BelleStringhe.centrata(string, lunghezzaMassimaStri));
+			fine.append(BelleStringhe.centrata(string, lunghezzaMassimaStri+1));
 			fine.append(ACAPO);
 		}
 		return fine.toString();

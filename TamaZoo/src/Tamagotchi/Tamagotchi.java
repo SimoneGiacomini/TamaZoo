@@ -1,6 +1,7 @@
 package Tamagotchi;
 
 import tamaZoo.TamaZoo;
+import util.mylib.BelleStringhe;
 
 /**
  * Classe che rappresenta un <a href="https://it.wikipedia.org/wiki/Tamagotchi">
@@ -219,7 +220,7 @@ public class Tamagotchi extends TamaZoo {
 	 * ({@linkplain #sazieta}/{@linkplain #MAX_VALORI_INTERNI})
 	 */
 	public String getSazietaFormattata() {
-		return String.format("(%.2f/%d)%n", getSazieta(), MAX_VALORI_INTERNI);
+		return String.format("(%.2f/%d)", getSazieta(), MAX_VALORI_INTERNI);
 	}
 
 	/**
@@ -227,7 +228,7 @@ public class Tamagotchi extends TamaZoo {
 	 * ({@linkplain #affetto}/{@linkplain #MAX_VALORI_INTERNI})
 	 */
 	public String getAffettoFormattato() {
-		return String.format("(%.2f/%d)%n", getAffetto(), MAX_VALORI_INTERNI);
+		return String.format("(%.2f/%d)", getAffetto(), MAX_VALORI_INTERNI);
 	}
 
 	/**
@@ -239,7 +240,7 @@ public class Tamagotchi extends TamaZoo {
 	 *      {@linkplain #getAffettoFormattato()}
 	 */
 	public String toString() {
-		return String.format("%n%s %n%s%s%n%s %s%n%s %s", getTipo(), getNome(), umore(), SAZIETA.toUpperCase(),
+		return String.format("%s %n%s%s%n%s %s%n%s %s", getTipo(), getNome(), umore(), SAZIETA.toUpperCase(),
 				getSazietaFormattata(), AFFETTO.toUpperCase(), getAffettoFormattato());
 	}
 
@@ -292,7 +293,7 @@ public class Tamagotchi extends TamaZoo {
 
 		if (getSazieta() == MAX_VALORI_INTERNI) {
 			if (error.length() > 0)
-				error.append('\t');
+				error.append(BelleStringhe.ACAPO);
 			error.append(String.format(WARNING_HIGH, SAZIETA));
 		}
 		return error.toString();
@@ -346,7 +347,7 @@ public class Tamagotchi extends TamaZoo {
 
 		if (getAffetto() == MAX_VALORI_INTERNI) {
 			if (error.length() > 0)
-				error.append('\t');
+				error.append(BelleStringhe.ACAPO);
 			error.append(String.format(WARNING_HIGH, AFFETTO));
 		}
 		return error.toString();

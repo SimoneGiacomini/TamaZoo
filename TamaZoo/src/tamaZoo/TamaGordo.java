@@ -53,15 +53,7 @@ public class TamaGordo extends Tamagotchi {
 		numVolteDaiBiscotti++;
 		numVolteDaiCarezze = 0;// numVolteDaiCarezze--;
 		StringBuffer error = new StringBuffer();
-		/*
-		 *Questa parte diminuisce l'efficacia dell'aumento della sazieta'(e' una
-		 * parte di upgrade del programma, richiesta in Tamagotchi)
-		 */
-		if (numVolteDaiBiscotti > TOO_MUCH_BISCOTTI) {
-		int numeroBiscottiConRiduzione=(int) Math.round((double) numeroBiscotti / RIDUZ_EFF_STIMULUS);
-			numeroBiscotti = numeroBiscottiConRiduzione;// numeroBiscotti=numeroBiscotti/2;
-			error.append(String.format(TOO_MUCH_STIMULUS + "%n", BISCOTTI.toUpperCase()));
-		}
+		
 		//  check se la sazieta'  e' gia'  al massimo, non si puo' piu' dare
 		// biscotti
 		if (Math.min(getSazieta(), MAX_VALORI_INTERNI) == MAX_VALORI_INTERNI)
@@ -78,7 +70,7 @@ public class TamaGordo extends Tamagotchi {
 			
 			error.append(String.format(WARNING_HIGH, SAZIETA));
 		}
-		return error.toString() + toString();
+		return error.toString();
 
 	}
 
@@ -114,7 +106,7 @@ public class TamaGordo extends Tamagotchi {
 		if (getSazieta() == MIN_VALORI_INTERNI)
 			error.append(String.format(WARNING_LOW, SAZIETA));
 
-		return error.toString() + toString();
+		return error.toString();
 	}
 
 	/**

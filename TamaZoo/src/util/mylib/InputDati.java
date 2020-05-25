@@ -237,9 +237,9 @@ public class InputDati {
 			return false;
 	}
 
-	public static void premutoTasto(String daOutputtare) {
+	public static void isUnTastoPremuto(String daOutputtare, String messaggio) {
 		System.out.println(daOutputtare);
-		System.out.print("Per visualizzare il prossimo elemento, premi invio >");
+		System.out.print(messaggio);
 		lettore.next();
 		return;
 	}
