@@ -2,13 +2,14 @@ package tamaZoo;
 
 import Tamagotchi.Tamagotchi;
 import Tamagotchi.UtilTamagotchi;
+import util.mylib.BelleStringhe;
+
 /**
  * Classe rappresentante un <tt>TamaGordo</TT>
  * 
  * @author Simone
  */
 public class TamaGordo extends Tamagotchi {
-	
 
 	/**
 	 * <h1>Costruttore vuoto</h1> viene istanziato un oggetto di tipo
@@ -26,29 +27,28 @@ public class TamaGordo extends Tamagotchi {
 	public TamaGordo(String nome) {
 		super(nome);
 		setAffetto(MAX_VALORI_INTERNI);
-		
+
 	}
+
 	/**
 	 * <b>Costruttore con attributi</b>
 	 */
 	public TamaGordo(String nome, float sazieta) {
 		super(nome, MAX_VALORI_INTERNI, sazieta);
-	    
-	    
+
 	}
-		
-	
+
 	/**
 	 * dando in input X biscotti essi<b> aumenteranno del
-	 * {@linkplain Tamagotchi#PERCENTUALE_AUMENTA_BISCOTTI} l'attributo {@linkplain Tamagotchi#sazieta}
-	 * per OGNI BISCOTTO DATO</b>. In piu' questo metodo <b>controlla tutte le
-	 * possibili combinazioni</b> per non settare a un valore, stabilito
-	 * da noi, troppo alto ({@linkplain Tamagotchi#MAX_VALORI_INTERNI}) o basso
+	 * {@linkplain Tamagotchi#PERCENTUALE_AUMENTA_BISCOTTI} l'attributo
+	 * {@linkplain Tamagotchi#sazieta} per OGNI BISCOTTO DATO</b>. In piu' questo
+	 * metodo <b>controlla tutte le possibili combinazioni</b> per non settare a un
+	 * valore, stabilito da noi, troppo alto
+	 * ({@linkplain Tamagotchi#MAX_VALORI_INTERNI}) o basso
 	 * ({@linkplain Tamagotchi#MIN_VALORI_INTERNI}) gli attributi
 	 * 
 	 * @param numeroBiscotti
-	 * @return {@linkplain String} con i parametri aggiornati e tutti i messaggi
-	 *         d'errore del caso
+	 * @return {@linkplain String} con tutti i messaggi d'errore del caso
 	 * @see {@linkplain UtilTamagotchi#checkErrInBuild},
 	 *      {@linkplain Tamagotchi#toString()}
 	 */
@@ -57,13 +57,15 @@ public class TamaGordo extends Tamagotchi {
 		numVolteDaiBiscotti++;
 		numVolteDaiCarezze = 0;// numVolteDaiCarezze--;
 		StringBuffer error = new StringBuffer();
-		
-		//  check se la sazieta'  e' gia'  al massimo, non si puo' piu' dare
+
+		// check se la sazieta'  e' gia'  al massimo, non si puo' piu' dare
 		// biscotti
-		if (Math.min(getSazieta(), MAX_VALORI_INTERNI) == MAX_VALORI_INTERNI)
+		if (Math.min(getSazieta(), MAX_VALORI_INTERNI) == MAX_VALORI_INTERNI) {
 			error.append(ERR_TAMAGOTCHI_SAZIO_AL_MAX);
+			error.append(BelleStringhe.ACAPO);
+		}
 		try {
-			float nuovaSazieta=(float) UtilTamagotchi.incrementoInPercentuale(getSazieta(), numeroBiscotti,
+			float nuovaSazieta = (float) UtilTamagotchi.incrementoInPercentuale(getSazieta(), numeroBiscotti,
 					PERCENTUALE_AUMENTA_BISCOTTI);
 			setSazieta(nuovaSazieta);
 
@@ -71,8 +73,9 @@ public class TamaGordo extends Tamagotchi {
 			setSazieta(MAX_VALORI_INTERNI);
 		}
 		if (getSazieta() == MAX_VALORI_INTERNI) {
-			
+
 			error.append(String.format(WARNING_HIGH, SAZIETA));
+			error.append(BelleStringhe.ACAPO);
 		}
 		return error.toString();
 
@@ -80,16 +83,16 @@ public class TamaGordo extends Tamagotchi {
 
 	/**
 	 * dando in input X carezze esse<b> non aumentano l'attributo
-	 * {@linkplain Tamagotchi#affetto}</b>, ma <b>diminuiranno SOLO la {@linkplain Tamagotchi#sazieta}
-	 * tramite la formula: {@code sazieta=sazieta-(numeroCarezze)}</b>. In piu'
-	 * questo metodo <b>controlla tutte le possibili combinazioni</b>, per
-	 * non settare a un valore, stabilito da noi, troppo alto
-	 * ({@linkplain Tamagotchi#MAX_VALORI_INTERNI}) o basso ({@linkplain Tamagotchi#MIN_VALORI_INTERNI})
-	 * gli attributi
+	 * {@linkplain Tamagotchi#affetto}</b>, ma <b>diminuiranno SOLO la
+	 * {@linkplain Tamagotchi#sazieta} tramite la formula:
+	 * {@code sazieta=sazieta-(numeroCarezze)}</b>. In piu' questo metodo
+	 * <b>controlla tutte le possibili combinazioni</b>, per non settare a un
+	 * valore, stabilito da noi, troppo alto
+	 * ({@linkplain Tamagotchi#MAX_VALORI_INTERNI}) o basso
+	 * ({@linkplain Tamagotchi#MIN_VALORI_INTERNI}) gli attributi
 	 * 
 	 * @param numeroCarezze
-	 * @return {@linkplain String} con i parametri aggiornati e tutti i messaggi
-	 *         d'errore del caso
+	 * @return {@linkplain String} con tutti i messaggi d'errore del caso
 	 * @see {@linkplain UtilTamagotchi#checkErrInBuild},
 	 *      {@linkplain Tamagotchi#toString()}
 	 * 
@@ -107,9 +110,10 @@ public class TamaGordo extends Tamagotchi {
 			setSazieta(MIN_VALORI_INTERNI);
 		}
 
-		if (getSazieta() == MIN_VALORI_INTERNI)
+		if (getSazieta() == MIN_VALORI_INTERNI) {
 			error.append(String.format(WARNING_LOW, SAZIETA));
-
+			error.append(BelleStringhe.ACAPO);
+		}
 		return error.toString();
 	}
 
@@ -149,5 +153,4 @@ public class TamaGordo extends Tamagotchi {
 		return false;
 	}
 
-	
 }

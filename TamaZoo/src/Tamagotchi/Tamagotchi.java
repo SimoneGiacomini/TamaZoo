@@ -296,6 +296,7 @@ public class Tamagotchi extends TamaZoo {
 			if (error.length() > 0)
 				error.append(BelleStringhe.ACAPO);
 			error.append(String.format(WARNING_HIGH, SAZIETA));
+			error.append(BelleStringhe.ACAPO);
 		}
 		return error.toString();
 

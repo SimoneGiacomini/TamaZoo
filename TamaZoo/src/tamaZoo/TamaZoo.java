@@ -1,7 +1,6 @@
 package tamaZoo;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import Tamagotchi.Tamagotchi;
 import util.mylib.BelleStringhe;
