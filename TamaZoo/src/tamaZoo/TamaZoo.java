@@ -33,10 +33,10 @@ public abstract class TamaZoo {
 
 	public static String[] daiBiscotti(int biscotti) {
 		String[] fine = new String[zoo.size()];
-		for (int i = 0; i < zoo.size(); i++) {
+		for (int i = 0,j=0; i < zoo.size(); j++,i++) {
 			String daVisu = zoo.get(i).riceviBiscotti(biscotti) + zoo.get(i).toString();
 
-			fine[i] = BelleStringhe.stampaStringaCorniceCentrato(daVisu, BelleStringhe.GRADO);
+			fine[j] = BelleStringhe.stampaStringaCorniceCentrato(daVisu, BelleStringhe.GRADO);
 			if (zoo.get(i).sonoMorto()) {
 				zoo.remove(zoo.get(i));
 				i--;
@@ -47,9 +47,9 @@ public abstract class TamaZoo {
 
 	public static String[] daiCarezze(int carezze) {
 		String[] fine = new String[zoo.size()];
-		for (int i = 0; i < zoo.size(); i++) {
+		for (int i=0,j = 0; i < zoo.size(); i++,j++) {
 			String daVisu = zoo.get(i).riceviCarezze(carezze) + zoo.get(i).toString();
-			fine[i] = (BelleStringhe.stampaStringaCorniceCentrato(daVisu, BelleStringhe.GRADO));
+			fine[j] = (BelleStringhe.stampaStringaCorniceCentrato(daVisu, BelleStringhe.GRADO));
 			if (zoo.get(i).sonoMorto()) {
 				zoo.remove(zoo.get(i));
 				i--;

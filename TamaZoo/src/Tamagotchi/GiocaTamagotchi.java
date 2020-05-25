@@ -93,8 +93,5 @@ public class GiocaTamagotchi {
 		System.out.println(GiocaTamagotchi.PRESENTAZIONE + tam.getNome());
 	}
 
-	private static void mostraDaiBiscotti() {
-
-	}
 
 }
