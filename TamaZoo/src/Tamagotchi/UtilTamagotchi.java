@@ -1,7 +1,5 @@
 package Tamagotchi;
 
-
-
 import tamaZoo.TamaGordo;
 import tamaZoo.TamaTriste;
 import tamaZoo.TamaZoo;
@@ -13,7 +11,7 @@ import util.mylib.*;
  * @author Simone Giacomini s.giacomini008@studenti.unibs.it
  */
 public class UtilTamagotchi {
-	
+
 	public static final byte ERR_TOO_LOW = -1;
 
 	public static final byte ERR_TOO_HIGH = +1;
@@ -29,8 +27,7 @@ public class UtilTamagotchi {
 	 * Costante {@linkplain String} utilizzata per l'acquisizione/modifica del nome
 	 * del {@linkplain Tamagotchi}
 	 */
-	private static final String NEW_NOME_TAMAGOTCHI = "\nInserisci il nome del tuo "
-			+ "Tamagotchi ";
+	private static final String NEW_NOME_TAMAGOTCHI = "\nInserisci il nome del tuo " + "Tamagotchi ";
 
 	/**
 	 * Costante {@linkplain String} utilizzata per l'acquisizione/modifica della
@@ -42,10 +39,7 @@ public class UtilTamagotchi {
 	 * Costante {@linkplain String} utilizzata per l'acquisizione/modifica della
 	 * affetto del {@linkplain Tamagotchi}
 	 */
-	private static final String NEW_AFFETTO_TAMAGOTCHI = "\nInserisci l'" + Tamagotchi.AFFETTO
-			+ " del tuo Tamagotchi ";
-
-	
+	private static final String NEW_AFFETTO_TAMAGOTCHI = "\nInserisci l'" + Tamagotchi.AFFETTO + " del tuo Tamagotchi ";
 
 	/**
 	 * Metodo che permette di creare un {@link TamaTriste}
@@ -115,7 +109,7 @@ public class UtilTamagotchi {
 	 *         {@linkplain TamaGordo}, con valori di <b>affetto</b> e di
 	 *         <b>sazieta</b> predifiniti
 	 * @since 2020/5/16
-	 */	
+	 */
 	public static void creaZoo(int nTamagotchi) {
 		for (int i = 0; i < nTamagotchi; i++) {
 			String nomeTam = null;
@@ -124,8 +118,9 @@ public class UtilTamagotchi {
 				if (TamaZoo.tamaNameIsUsed(nomeTam))
 					System.out.println("Nome gia' in uso");
 				else {
-					System.out.println("Tamagotchi n " + (i + 1) + " inserito con successo");
-					nomeTam=nomeTam.toUpperCase();
+					System.out.println(
+							String.format("Tamagotchi n%c %d inserito con successo", BelleStringhe.GRADO, (i + 1)));
+					nomeTam = nomeTam.toUpperCase();
 					break;
 				}
 			} while (true);
@@ -251,8 +246,5 @@ public class UtilTamagotchi {
 		}
 		return numeroIniziale;
 	}
-
-	
-	
 
 }

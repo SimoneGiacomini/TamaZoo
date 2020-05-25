@@ -11,7 +11,7 @@ public class MyMenu {
 
 	protected final static String VOCE_USCITA = "0)\tEsci";
 	final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata > ";
-	private final static int LUNGHEZZA_RICHIESTA = RICHIESTA_INSERIMENTO.length();
+	protected final static int LUNGHEZZA_RICHIESTA = RICHIESTA_INSERIMENTO.length();
 	private String titolo;
 	private String[] voci;
 

@@ -24,7 +24,7 @@ public class InputDati {
 	/**
 	 * Legge una {@linkplain String} da input senza nessun controllo
 	 * 
-	 * @param messaggio,
+	 * @param messaggio
 	 *            da visualizzare in {@code Console}
 	 */
 	public static String leggiStringa(String messaggio) {
@@ -35,7 +35,7 @@ public class InputDati {
 	/**
 	 * Legge una {@linkplain String} da input, controllando che non sia vuota
 	 * 
-	 * @param messaggio,
+	 * @param messaggio
 	 *            da visualizzare in {@code Console}
 	 */
 	public static String leggiStringaNonVuota(String messaggio) {
@@ -56,7 +56,7 @@ public class InputDati {
 	/**
 	 * Legge un carattere da input senza nessun controllo
 	 * 
-	 * @param messaggio,
+	 * @param messaggio
 	 *            da visualizzare in {@code Console}
 	 */
 	public static char leggiChar(String messaggio) {
@@ -75,9 +75,9 @@ public class InputDati {
 	 * Legge un carattere da input, controllando che sia all'interno della
 	 * {@linkplain String} {@code ammissibili}
 	 * 
-	 * @param messaggio,
+	 * @param messaggio
 	 *            da visualizzare in {@code Console}
-	 * @param ammissibili,
+	 * @param ammissibili
 	 *            e' la {@linkplain String} che contiene tutti i char disponibili
 	 */
 	public static char leggiUpperChar(String messaggio, String ammissibili) {
@@ -97,7 +97,7 @@ public class InputDati {
 	/**
 	 * Legge un intero da input, controllando che ciò che si inserisce sia testo
 	 * 
-	 * @param messaggio,
+	 * @param messaggio
 	 *            da visualizzare in {@code Console}
 	 */
 	public static Integer leggiIntero(String messaggio) {
@@ -118,7 +118,7 @@ public class InputDati {
 	/**
 	 * Legge un intero da input Positivo {@code >=1}
 	 * 
-	 * @param messaggio,
+	 * @param messaggio
 	 *            da visualizzare in {@code Console}
 	 */
 	public static int leggiInteroPositivo(String messaggio) {
@@ -128,7 +128,7 @@ public class InputDati {
 	/**
 	 * Legge un intero da input che non sia negativo {@code >=0}
 	 * 
-	 * @param messaggio,
+	 * @param messaggio
 	 *            da visualizzare in {@code Console}
 	 */
 	public static int leggiInteroNonNegativo(String messaggio) {
@@ -139,7 +139,7 @@ public class InputDati {
 	 * Legge un intero da input, assicurandosi che sia inserito un valore
 	 * {@code >=minimo}
 	 * 
-	 * @param messaggio,
+	 * @param messaggio
 	 *            da visualizzare in {@code Console}
 	 */
 	public static int leggiInteroConMinimo(String messaggio, int minimo) {
@@ -159,7 +159,7 @@ public class InputDati {
 	/**
 	 * Legge un intero da input, assicurandosi che
 	 * 
-	 * @param messaggio,
+	 * @param messaggio
 	 *            da visualizzare in {@code Console}
 	 */
 	public static int leggiIntero(String messaggio, int minimo, int massimo) {
@@ -237,7 +237,16 @@ public class InputDati {
 			return false;
 	}
 
-	public static void isUnTastoPremuto(String daOutputtare, String messaggio) {
+	/**
+	 * <b>Metodo</B> che capisce se il tasto <b>{@code INVIO}</B> e' stato premuto
+	 * 
+	 * @param daOutputtare
+	 *            e' la {@linkplain String} con il contenuto da mandare in output
+	 * @param messaggio
+	 *            e' il messaggio di 'attesa' finche' non si preme invio
+	 * @author Simone
+	 */
+	public static void isInvioPremuto(String daOutputtare, String messaggio) {
 		System.out.println(daOutputtare);
 		System.out.print(messaggio);
 		lettore.next();

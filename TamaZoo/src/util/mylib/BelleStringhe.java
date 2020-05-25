@@ -118,7 +118,7 @@ public class BelleStringhe {
 		}
 		return fine.toString();
 	}
-
+/**<b>*/
 	private static int lunghezzaMassimaString(String daStampare) {
 		ArrayList<Integer> aCapo = new ArrayList<>();
 		int i = 0, j = 0;

@@ -158,7 +158,6 @@ public class Tamagotchi extends TamaZoo {
 		this(nome, VAL_INIZ_RECOMMEND, VAL_INIZ_RECOMMEND);
 	}
 
-	
 	/** @return il valore di {@linkplain #nome} */
 	public String getNome() {
 		return nome;
@@ -217,7 +216,7 @@ public class Tamagotchi extends TamaZoo {
 
 	/**
 	 * @return una {@linkplain String} tipo
-	 * ({@linkplain #sazieta}/{@linkplain #MAX_VALORI_INTERNI})
+	 *         ({@linkplain #sazieta}/{@linkplain #MAX_VALORI_INTERNI})
 	 */
 	public String getSazietaFormattata() {
 		return String.format("(%.2f/%d)", getSazieta(), MAX_VALORI_INTERNI);
@@ -225,7 +224,7 @@ public class Tamagotchi extends TamaZoo {
 
 	/**
 	 * @return una {@linkplain String} tipo
-	 * ({@linkplain #affetto}/{@linkplain #MAX_VALORI_INTERNI})
+	 *         ({@linkplain #affetto}/{@linkplain #MAX_VALORI_INTERNI})
 	 */
 	public String getAffettoFormattato() {
 		return String.format("(%.2f/%d)", getAffetto(), MAX_VALORI_INTERNI);
@@ -233,8 +232,8 @@ public class Tamagotchi extends TamaZoo {
 
 	/**
 	 * @return una {@linkplain String} con {@linkplain #nome},
-	 * {@linkplain #umore()}, ed {@linkplain #sazieta} e {@linkplain #affetto}
-	 * formattate
+	 *         {@linkplain #umore()}, ed {@linkplain #sazieta} e
+	 *         {@linkplain #affetto} formattate
 	 * 
 	 * @see {@linkplain #getSazietaFormattata()},
 	 *      {@linkplain #getAffettoFormattato()}
@@ -248,9 +247,10 @@ public class Tamagotchi extends TamaZoo {
 	 * dando in input X biscotti essi<b> aumenteranno del
 	 * {@linkplain #PERCENTUALE_AUMENTA_BISCOTTI} l'attributo {@linkplain #sazieta}
 	 * per OGNI BISCOTTO DATO</b> e <b>diminuira' l'{@linkplain #affetto} con la
-	 * formula: {@code affetto=affetto-(numerobiscotti/}{@value #FATTORE_BISCOTTI})</b>. In piu' questo
-	 * metodo <b>controlla tutte le possibili combinazioni possibili</b> per non
-	 * settare a un valore, stabilito da noi, troppo alto
+	 * formula:
+	 * {@code affetto=affetto-(numerobiscotti/}{@value #FATTORE_BISCOTTI})</b>. In
+	 * piu' questo metodo <b>controlla tutte le possibili combinazioni possibili</b>
+	 * per non settare a un valore, stabilito da noi, troppo alto
 	 * ({@linkplain #MAX_VALORI_INTERNI}) o basso ({@linkplain #MIN_VALORI_INTERNI})
 	 * gli attributi
 	 * 
@@ -268,7 +268,7 @@ public class Tamagotchi extends TamaZoo {
 			numeroBiscotti = numeroBiscottiConRiduzione;// numeroBiscotti=numeroBiscotti/2;
 			error.append(String.format(TOO_MUCH_STIMULUS + "%n", BISCOTTI.toUpperCase()));
 		}
-			if (Math.min(getSazieta(), MAX_VALORI_INTERNI) == MAX_VALORI_INTERNI)
+		if (Math.min(getSazieta(), MAX_VALORI_INTERNI) == MAX_VALORI_INTERNI)
 
 			error.append(ERR_TAMAGOTCHI_SAZIO_AL_MAX);
 
@@ -290,6 +290,7 @@ public class Tamagotchi extends TamaZoo {
 		}
 		if (getAffetto() == MIN_VALORI_INTERNI)
 			error.append(String.format(WARNING_LOW, AFFETTO));
+		error.append(BelleStringhe.ACAPO);
 
 		if (getSazieta() == MAX_VALORI_INTERNI) {
 			if (error.length() > 0)
@@ -342,13 +343,15 @@ public class Tamagotchi extends TamaZoo {
 
 			setAffetto(MAX_VALORI_INTERNI);
 		}
-		if (getSazieta() == MIN_VALORI_INTERNI)
+		if (getSazieta() == MIN_VALORI_INTERNI) {
 			error.append(String.format(WARNING_LOW, SAZIETA));
-
+			error.append(BelleStringhe.ACAPO);
+		}
 		if (getAffetto() == MAX_VALORI_INTERNI) {
 			if (error.length() > 0)
 				error.append(BelleStringhe.ACAPO);
 			error.append(String.format(WARNING_HIGH, AFFETTO));
+			error.append(BelleStringhe.ACAPO);
 		}
 		return error.toString();
 	}

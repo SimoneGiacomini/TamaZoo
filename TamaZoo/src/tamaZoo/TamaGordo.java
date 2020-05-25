@@ -2,7 +2,11 @@ package tamaZoo;
 
 import Tamagotchi.Tamagotchi;
 import Tamagotchi.UtilTamagotchi;
-
+/**
+ * Classe rappresentante un <tt>TamaGordo</TT>
+ * 
+ * @author Simone
+ */
 public class TamaGordo extends Tamagotchi {
 	
 

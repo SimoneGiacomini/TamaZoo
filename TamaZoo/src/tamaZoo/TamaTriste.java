@@ -3,6 +3,11 @@ package tamaZoo;
 import Tamagotchi.Tamagotchi;
 import Tamagotchi.UtilTamagotchi;
 
+/**
+ * Classe rappresentante un <tt>TamaTriste</TT>
+ * 
+ * @author Simone
+ */
 public class TamaTriste extends Tamagotchi {
 
 	/**
@@ -34,8 +39,8 @@ public class TamaTriste extends Tamagotchi {
 
 	/**
 	 * Costruttore usato nei test, non capisco perche' lasciare solo come parametro
-	 * sazieta' e non anche affetto, in quanto "affetto" non e' descritto nel PDF che deve sempre
-	 * essere ad un valore fisso
+	 * sazieta' e non anche affetto, in quanto "affetto" non e' descritto nel PDF
+	 * che deve sempre essere ad un valore fisso
 	 */
 	@Deprecated
 	public TamaTriste(String nome, int sazieta) {
@@ -71,5 +76,5 @@ public class TamaTriste extends Tamagotchi {
 	public boolean sonoMorto() {
 		return (UtilTamagotchi.inRange(getSazieta(), MAX_VALORI_INTERNI - 1, MIN_VALORI_INTERNI + 1) != 0);
 	}
-	
+
 }
