@@ -267,9 +267,7 @@ public class Tamagotchi extends TamaZoo {
 			numeroBiscotti = numeroBiscottiConRiduzione;// numeroBiscotti=numeroBiscotti/2;
 			error.append(String.format(TOO_MUCH_STIMULUS + "%n", BISCOTTI.toUpperCase()));
 		}
-		// terzo check se la sazieta'  e' gia'  al massimo, non si puo' piu' dare
-		// biscotti
-		if (Math.min(getSazieta(), MAX_VALORI_INTERNI) == MAX_VALORI_INTERNI)
+			if (Math.min(getSazieta(), MAX_VALORI_INTERNI) == MAX_VALORI_INTERNI)
 
 			error.append(ERR_TAMAGOTCHI_SAZIO_AL_MAX);
 

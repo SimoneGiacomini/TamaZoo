@@ -26,7 +26,7 @@ public class GiocaTamagotchi {
 	 */
 	public static void usaTamagotchi() {
 		byte valoreIn;
-		byte scelta;
+		int scelta;
 		do {
 			if (GiocaTamagotchi.endGame()) {
 				System.out.println(
@@ -35,7 +35,7 @@ public class GiocaTamagotchi {
 					break;
 			}
 
-			scelta = (byte) m.scegli();
+			scelta = m.scegli();
 			switch (scelta) {
 			case 1:
 			case 'A':
@@ -59,18 +59,19 @@ public class GiocaTamagotchi {
 				System.out.println(TamaZoo.toStringMyZoo());
 				break;
 
-			default:
-				break;
+			case 0:
+			case '0':
+				return;
+
 			}
 
-		} while (scelta != '0'||scelta!=0);
+		} while (true);
 	}
 
 	/** Scopre se il gioco attuale del tamagotchi e' finito */
 
 	public static boolean endGame() {
 		return (TamaZoo.zooVuoto());
-		
 
 	}
 
@@ -93,7 +94,7 @@ public class GiocaTamagotchi {
 	}
 
 	private static void mostraDaiBiscotti() {
-		
+
 	}
-	
+
 }
