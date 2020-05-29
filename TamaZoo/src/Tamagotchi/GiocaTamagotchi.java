@@ -43,7 +43,7 @@ public class GiocaTamagotchi {
 				valoreIn = (byte) EstrazioniCasuali.estraiIntero(MIN_STIMOLI, InputDati.leggiIntero(
 						"Inserisci la quantita' di biscotti da dare ", MIN_STIMOLI, Tamagotchi.MAX_INPUT_STIMOLI));
 				System.out.println("Biscotti estratti: " + valoreIn);
-				OutputArray.arrayStringConsoleConAttesa(TamaZoo.daiBiscotti(valoreIn));
+				OutputArray.arrayStringConsole(TamaZoo.daiBiscotti(valoreIn));
 				break;
 			case 2:
 			case 'B':

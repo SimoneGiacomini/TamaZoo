@@ -245,8 +245,9 @@ public class InputDati {
 	 * @param messaggio
 	 *            e' il messaggio di 'attesa' finche' non si preme invio
 	 * @author Simone
+	 * @param <T>
 	 */
-	public static void isInvioPremuto(String daOutputtare, String messaggio) {
+	public static <T> void isInvioPremuto(T daOutputtare, String messaggio) {
 		System.out.println(daOutputtare);
 		System.out.print(messaggio);
 		lettore.next();

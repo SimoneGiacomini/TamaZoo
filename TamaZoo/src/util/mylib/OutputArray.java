@@ -1,5 +1,7 @@
 package util.mylib;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**Classe <tt>Util<tt> con metodi utili alla scrittura in {@linkplain Console}*/
 public class OutputArray {
@@ -10,8 +12,9 @@ public class OutputArray {
 	}
 	/**<b>Metodo statico</b> che permette di mostrare ogni sigolo elemento dell'<tt>array</tt> dopo che si preme invio 
 	 * @param array, e' un array di {@linkplain String}
-	 * @author Simone*/
-	public static void arrayStringConsoleConAttesa(String[] array) {
+	 * @author Simone
+	 * @param <T>*/
+	public static <T> void arrayStringConsoleConAttesa(T[] array) {
 		for (int i = 0; i < array.length; i++) {
 			InputDati.isInvioPremuto(array[i],PROSSIMO_ELEMENTO);
 			
@@ -20,10 +23,10 @@ public class OutputArray {
 
 	/**<b>Metodo statico</b> che permette di mostrare ogni sigolo elemento dell'<tt>array</tt> 
 	 * @param array, e' un array di {@linkplain String}
-	 * @author Simone*/
-	public static void arrayStringConsole(String[] array) {
-		for (int i = 0; i < array.length; i++) {
-			System.out.println(array[i]);
-		}
+	 * @author Simone
+	 * @param <T>*/
+	public static <T> void arrayStringConsole(T[] array) {
+		System.out.println(	Arrays.toString(array));
+		
 	}
 }

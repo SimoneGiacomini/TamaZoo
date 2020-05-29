@@ -142,7 +142,7 @@ public abstract class TamaZoo {
 	 * senza specificarne la specie o le loro statistiche</b>
 	 * 
 	 * @return una {@linkplain String} che descrive l'intero zoo, con dei separatori
-	 *         da tra di loro ({@link #SEPARATORE})
+	 *         da tra di loro 
 	 * @author Francesca, edited by Simone
 	 */
 	public static String toStringMyZooNoParam() {
@@ -164,7 +164,7 @@ public abstract class TamaZoo {
 	 * <b>Metodo</b> che descrive lo {@link #zoo} e tutti i suoi abitanti
 	 * 
 	 * @return una {@linkplain String} che descrive l'intero zoo, con dei separatori
-	 *         da tra di loro ({@link #SEPARATORE})
+	 *         da tra di loro 
 	 * @author Francesca, edited by Simone
 	 */
 	public static String toStringMyZoo() {
