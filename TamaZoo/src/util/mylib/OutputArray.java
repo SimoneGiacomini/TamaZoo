@@ -1,6 +1,5 @@
 package util.mylib;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**Classe <tt>Util<tt> con metodi utili alla scrittura in {@linkplain Console}*/
